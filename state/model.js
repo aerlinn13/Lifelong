@@ -9,6 +9,7 @@ const initialState = Map({
     ttl: 0,
     weight: 0,
     height: 0,
+    onboardingFinished: false,
     relatives: {},
     strikes: {},
 });
