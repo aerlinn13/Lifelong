@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
 
-const initialState = Map({
+const initialState = new Map({
     reports: [],
     firstName: '',
     lastName: '',

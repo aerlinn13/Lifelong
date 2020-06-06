@@ -18,6 +18,6 @@ const DashboardScreen = () => (
         <StyledText>Hello World!</StyledText>
       </StyledView>
     </SafeAreaView>
-    ); 
+    );
 
 export default DashboardScreen;
