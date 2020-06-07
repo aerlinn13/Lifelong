@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import { ScrollView } from 'react-native';
+import { ScrollView, KeyboardAvoidingView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux';
 import { finishOnboarding } from '../state/actions';
@@ -74,12 +74,14 @@ const OnboardingScreen = ({ navigation, finishOnboarding }) => {
 
 	return (
 		<SafeAreaView>
-			<ScrollView bounces={false}>
-				{renderSteps()}
-				<Button onPress={() => handlePress()}>
-					<ButtonText>{renderButtonText()}</ButtonText>
-				</Button>
-			</ScrollView>
+			<KeyboardAvoidingView>
+				<ScrollView bounces={false}>
+					{renderSteps()}
+					<Button onPress={() => handlePress()}>
+						<ButtonText>{renderButtonText()}</ButtonText>
+					</Button>
+				</ScrollView>
+			</KeyboardAvoidingView>
 		</SafeAreaView>
 	);
 };

@@ -6,7 +6,7 @@ import texts from './texts';
 const StepOneIntro = () => (
 	<React.Fragment>
 		<OnboardingHeader>Welcome to Lifelong</OnboardingHeader>
-		{texts['intro'].map((text) => <Paragraph>{text}</Paragraph>)}
+		{texts['intro'].map((text, i) => <Paragraph key={'paragraph' + i}>{text}</Paragraph>)}
 	</React.Fragment>
 );
 

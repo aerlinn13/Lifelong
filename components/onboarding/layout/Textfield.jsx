@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+const Container = styled.View`padding: 0px 30px;`;
+
 const TextInput = styled.TextInput`
 	font-family: LoraRegular;
 	font-size: 30px;
@@ -18,11 +20,13 @@ const Label = styled.Text`
 	padding-top: 30px;
 `;
 
-const Textfield = ({ label, placeholder }) => (
-	<React.Fragment>
-		<Label>{label}</Label>
-		<TextInput placeholder={placeholder} />
-	</React.Fragment>
-);
+const Textfield = ({ label, placeholder, onChange }) => {
+	return (
+		<Container>
+			<Label>{label}</Label>
+			<TextInput placeholder={placeholder} onChangeText={(text) => onChange(text)} />
+		</Container>
+	);
+};
 
 export default Textfield;
