@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { OnboardingHeader } from './layout';
+import { OnboardingHeader, Textfield } from './layout';
 
-const StepTwoUserDetails = () => <OnboardingHeader>About you</OnboardingHeader>;
+const StepTwoUserDetails = () => (
+	<React.Fragment>
+		<OnboardingHeader>About you</OnboardingHeader>
+		<Textfield label={'Weight, kg'} />
+	</React.Fragment>
+);
 
 export default StepTwoUserDetails;
