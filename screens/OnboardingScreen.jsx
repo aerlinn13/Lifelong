@@ -75,12 +75,10 @@ const OnboardingScreen = ({ navigation, finishOnboarding }) => {
 	return (
 		<SafeAreaView>
 			<KeyboardAvoidingView>
-				<ScrollView bounces={false}>
-					{renderSteps()}
-					<Button onPress={() => handlePress()}>
-						<ButtonText>{renderButtonText()}</ButtonText>
-					</Button>
-				</ScrollView>
+				<Button onPress={() => handlePress()}>
+					<ButtonText>{renderButtonText()}</ButtonText>
+				</Button>
+				{renderSteps()}
 			</KeyboardAvoidingView>
 		</SafeAreaView>
 	);
