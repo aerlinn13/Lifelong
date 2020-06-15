@@ -21,10 +21,10 @@ const TextInput = styled.TextInput`
 const Option = styled.TouchableOpacity`
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: flex-start;
 	align-items: center;
 	margin-top: 30px;
-	width: 30%;
+	width: 50%;
 `;
 
 const Checkbox = styled.View`
