@@ -12,73 +12,29 @@ import {
 	StepFiveFinal
 } from '../components/onboarding';
 
-const Button = styled.TouchableOpacity`
-	background-color: #99d355;
-	color: white;
-	width: 60px;
-	height: 30px;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	border-radius: 10px;
-`;
-
-const ButtonText = styled.Text`
-	color: white;
-	font-family: LoraBold;
-	font-size: 18px;
-	text-align: center;
-`;
-
 const OnboardingScreen = ({ navigation, finishOnboarding }) => {
-	const [ step, changeStep ] = useState(0);
-
+	const [ step, setStep ] = useState(0);
 	const renderSteps = () => {
-		console.log(step);
 		switch (step) {
 			case 0:
-				return <StepOneIntro />;
+				return <StepOneIntro step={step} setStep={setStep} />;
 			case 1:
-				return <StepTwoUserDetails />;
+				return <StepTwoUserDetails step={step} setStep={setStep} />;
 			case 2:
-				return <StepThreeMotherDetails />;
+				return <StepThreeMotherDetails step={step} setStep={setStep} />;
 			case 3:
-				return <StepFourFatherDetails />;
+				return <StepFourFatherDetails step={step} setStep={setStep} />;
 			case 4:
-				return <StepFiveFinal />;
+				return <StepFiveFinal step={step} setStep={setStep} />;
 			default:
 				return null;
-		}
-	};
-
-	const renderButtonText = () => {
-		if (step === 4) {
-			return 'Done';
-		} else {
-			return 'Next';
-		}
-	};
-
-	const handlePress = () => {
-		if (step === 4) {
-			finishOnboarding();
-			navigation.navigate('Dashboard');
-		} else {
-			changeStep(step + 1);
 		}
 	};
 
 	return (
 		<SafeAreaView>
 			<KeyboardAvoidingView>
-				<Button onPress={() => handlePress()}>
-					<ButtonText>{renderButtonText()}</ButtonText>
-				</Button>
-				{renderSteps()}
+				<ScrollView bounces={false}>{renderSteps()}</ScrollView>
 			</KeyboardAvoidingView>
 		</SafeAreaView>
 	);

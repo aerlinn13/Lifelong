@@ -12,15 +12,15 @@ const Container = styled.View`
 const Option = styled.TouchableOpacity`
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: center;
 	margin-top: 30px;
 	width: 30%;
 `;
 
 const Checkbox = styled.View`
-	height: 44px;
-	width: 44px;
+	height: 27px;
+	width: 27px;
 	border: 1px solid black;
 	border-radius: 10px;
 	background-color: ${(props) => (props.selected ? 'black' : 'white')};
