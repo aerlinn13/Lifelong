@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 const Button = styled.TouchableOpacity`
 	background-color: #99d355;
 	color: white;
-	width: 60px;
+	width: ${(props) => (props.wide ? '100px' : '60px')};
 	height: 30px;
 	text-align: center;
 	display: flex;
@@ -23,9 +23,9 @@ const ButtonText = styled.Text`
 	text-align: center;
 `;
 
-const ChangeStepButton = ({ label, onPress }) => {
+const ChangeStepButton = ({ label, onPress, wide }) => {
 	return (
-		<Button onPress={() => onPress()}>
+		<Button onPress={() => onPress()} wide={wide}>
 			<ButtonText>{label}</ButtonText>
 		</Button>
 	);

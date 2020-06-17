@@ -20,11 +20,11 @@ const Label = styled.Text`
 	padding-top: 30px;
 `;
 
-const Textfield = ({ label, placeholder, onChange }) => {
+const Textfield = ({ label, placeholder, onChange, type = 'default' }) => {
 	return (
 		<Container>
 			<Label>{label}</Label>
-			<TextInput placeholder={placeholder} onChangeText={(text) => onChange(text)} />
+			<TextInput placeholder={placeholder} keyboardType={type} onChangeText={(text) => onChange(text)} />
 		</Container>
 	);
 };

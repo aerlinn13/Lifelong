@@ -26,7 +26,8 @@ const StepTwoUserDetails = ({ step, setStep }) => {
 					<Textfield
 						key={`textfield-${step}-${internalStep}`}
 						label={'Weight, kg'}
-						type={'weight'}
+						role={'weight'}
+						type="numeric"
 						onChange={setWeight}
 					/>
 				);
@@ -35,7 +36,8 @@ const StepTwoUserDetails = ({ step, setStep }) => {
 					<Textfield
 						key={`textfield-${step}-${internalStep}`}
 						label={'Height, cm'}
-						type={'height'}
+						role={'height'}
+						type="numeric"
 						onChange={setHeight}
 					/>
 				);
@@ -44,7 +46,7 @@ const StepTwoUserDetails = ({ step, setStep }) => {
 					<Textfield
 						key={`textfield-${step}-${internalStep}`}
 						label={'Date of birth, dd.mm.yyyy'}
-						type={'dob'}
+						role={'dob'}
 						onChange={setDOB}
 					/>
 				);

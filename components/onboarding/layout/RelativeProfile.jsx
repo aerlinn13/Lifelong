@@ -54,7 +54,7 @@ const RelativeProfile = ({ label, placeholder, onChange }) => {
 	return (
 		<Container>
 			<Label>{label}</Label>
-			<TextInput placeholder={placeholder} onChangeText={(text) => onChange(text)} />
+			<TextInput placeholder={placeholder} keyboardType="numeric" onChangeText={(text) => onChange(text)} />
 			<Option key="dead" onPress={() => setDeceased(!deceased)}>
 				<Checkbox selected={deceased} />
 				<Text>Deceased</Text>

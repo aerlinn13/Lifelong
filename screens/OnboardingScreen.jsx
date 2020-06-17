@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components/native';
 import { ScrollView, KeyboardAvoidingView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux';
@@ -25,7 +24,7 @@ const OnboardingScreen = ({ navigation, finishOnboarding }) => {
 			case 3:
 				return <StepFourFatherDetails step={step} setStep={setStep} />;
 			case 4:
-				return <StepFiveFinal step={step} setStep={setStep} />;
+				return <StepFiveFinal finishOnboarding={finishOnboarding} />;
 			default:
 				return null;
 		}
@@ -40,8 +39,11 @@ const OnboardingScreen = ({ navigation, finishOnboarding }) => {
 	);
 };
 
-const mapDispatchToProps = (dispatch) => ({
-	finishOnboarding: () => dispatch(finishOnboarding())
+const mapDispatchToProps = (dispatch, ownProps) => ({
+	finishOnboarding: () => {
+		dispatch(finishOnboarding());
+		ownProps.navigation.navigate('Dashboard');
+	}
 });
 
 const OnboardingScreenContainer = connect(null, mapDispatchToProps)(OnboardingScreen);
