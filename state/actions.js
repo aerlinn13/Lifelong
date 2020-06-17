@@ -1,5 +1,18 @@
-import * as actionTypes from './actioTypes';
+import * as actionTypes from './actionTypes';
 
 export const finishOnboarding = () => ({
-    type: actionTypes.FINISH_ONBOARDING,
-})
+	type: actionTypes.FINISH_ONBOARDING
+});
+
+export const updatePersonalInfo = (info, value) => ({
+	type: actionTypes.UPDATE_PERSONAL_INFO,
+	info,
+	value
+});
+
+export const updateRelativeInfo = (relative, info, value) => ({
+	type: actionTypes.UPDATE_RELATIVE_INFO,
+	relative,
+	info,
+	value
+});

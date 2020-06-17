@@ -12,12 +12,8 @@ const options = [
 	}
 ];
 
-const StepTwoUserDetails = ({ step, setStep }) => {
+const StepTwoUserDetails = ({ step, setStep, updatePersonalInfo }) => {
 	const [ internalStep, setInternalStep ] = useState(0);
-	const [ weight, setWeight ] = useState(null);
-	const [ height, setHeight ] = useState(null);
-	const [ dob, setDOB ] = useState(null);
-	const [ gender, setGender ] = useState(null);
 
 	const renderStep = () => {
 		switch (internalStep) {
@@ -28,7 +24,7 @@ const StepTwoUserDetails = ({ step, setStep }) => {
 						label={'Weight, kg'}
 						role={'weight'}
 						type="numeric"
-						onChange={setWeight}
+						onChange={(text) => updatePersonalInfo('weight', text)}
 					/>
 				);
 			case 1:
@@ -38,7 +34,7 @@ const StepTwoUserDetails = ({ step, setStep }) => {
 						label={'Height, cm'}
 						role={'height'}
 						type="numeric"
-						onChange={setHeight}
+						onChange={(text) => updatePersonalInfo('height', text)}
 					/>
 				);
 			case 2:
@@ -47,7 +43,7 @@ const StepTwoUserDetails = ({ step, setStep }) => {
 						key={`textfield-${step}-${internalStep}`}
 						label={'Date of birth, dd.mm.yyyy'}
 						role={'dob'}
-						onChange={setDOB}
+						onChange={(text) => updatePersonalInfo('dob', text)}
 					/>
 				);
 			case 3:
@@ -57,7 +53,7 @@ const StepTwoUserDetails = ({ step, setStep }) => {
 						options={options}
 						label="Gender"
 						selectedValue={gender}
-						onPress={setGender}
+						onPress={(selection) => updatePersonalInfo('gender', selection)}
 					/>
 				);
 		}
@@ -70,6 +66,7 @@ const StepTwoUserDetails = ({ step, setStep }) => {
 			setInternalStep(internalStep + 1);
 		}
 	};
+
 	return (
 		<React.Fragment>
 			<OnboardingHeader>{`About you (${internalStep + 1} out of 4)`}</OnboardingHeader>
