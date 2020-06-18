@@ -11,7 +11,7 @@ import {
 	StepFiveFinal
 } from '../components/onboarding';
 
-const OnboardingScreen = ({ finishOnboarding, updatePersonalInfo, updateRelativeInfo }) => {
+const OnboardingScreen = ({ finishOnboarding, updatePersonalInfo, updateRelativeInfo, weight }) => {
 	const [ step, setStep ] = useState(0);
 	const renderSteps = () => {
 		switch (step) {
@@ -29,7 +29,7 @@ const OnboardingScreen = ({ finishOnboarding, updatePersonalInfo, updateRelative
 				return null;
 		}
 	};
-
+	console.log(weight);
 	return (
 		<SafeAreaView>
 			<KeyboardAvoidingView>
@@ -38,6 +38,10 @@ const OnboardingScreen = ({ finishOnboarding, updatePersonalInfo, updateRelative
 		</SafeAreaView>
 	);
 };
+
+const mapStateToProps = (state) => ({
+	weight: state.get('weight')
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	finishOnboarding: () => {
@@ -48,6 +52,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	updateRelativeInfo: (relative, info, value) => dispatch(updateRelativeInfo(relative, info, value))
 });
 
-const OnboardingScreenContainer = connect(null, mapDispatchToProps)(OnboardingScreen);
+const OnboardingScreenContainer = connect(mapStateToProps, mapDispatchToProps)(OnboardingScreen);
 
 export default OnboardingScreenContainer;
