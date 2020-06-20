@@ -52,7 +52,7 @@ const StepTwoUserDetails = ({ step, setStep, updatePersonalInfo }) => {
 						key={`radio-${step}-${internalStep}`}
 						options={options}
 						label="Gender"
-						selectedValue={gender}
+						role="gender"
 						onPress={(selection) => updatePersonalInfo('gender', selection)}
 					/>
 				);

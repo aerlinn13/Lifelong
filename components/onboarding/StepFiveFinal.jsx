@@ -7,7 +7,7 @@ const StepFiveFinal = ({ finishOnboarding }) => (
 	<React.Fragment>
 		<OnboardingHeader>Our goals</OnboardingHeader>
 		<ChangeStepButton label="Complete" onPress={finishOnboarding} wide />
-		{texts.stepFive.map((text, i) => <Paragraph key={'paragraph' + 1}>{text}</Paragraph>)}
+		{texts.stepFive.map((text, i) => <Paragraph key={'paragraph' + i}>{text}</Paragraph>)}
 	</React.Fragment>
 );
 

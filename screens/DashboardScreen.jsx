@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import { connect } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const StyledView = styled.View`
@@ -10,12 +11,21 @@ const StyledView = styled.View`
 
 const StyledText = styled.Text`color: palevioletred;`;
 
-const DashboardScreen = () => (
-	<SafeAreaView>
-		<StyledView>
-			<StyledText>Dashboard Screen</StyledText>
-		</StyledView>
-	</SafeAreaView>
-);
+const DashboardScreen = ({ state }) => {
+	console.log(state);
+	return (
+		<SafeAreaView>
+			<StyledView>
+				<StyledText>Dashboard Screen</StyledText>
+			</StyledView>
+		</SafeAreaView>
+	);
+};
 
-export default DashboardScreen;
+const mapStateToProps = (state) => ({
+	state
+});
+
+const DashboardScreenContainer = connect(mapStateToProps)(DashboardScreen);
+
+export default DashboardScreenContainer;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
@@ -39,12 +39,17 @@ const Text = styled.Text`
 `;
 
 const Radio = ({ label, options, selectedValue, onPress }) => {
+	const [ selected, setSelected ] = useState(null);
+	const handlePress = (value) => {
+		onPress(value);
+		setSelected(value);
+	};
 	return (
 		<Container>
 			<Label>{label}</Label>
 			{options.map((option, i) => (
-				<Option key={option.value} onPress={() => onPress(option.value)}>
-					<Checkbox selected={selectedValue === option.value} />
+				<Option key={option.value} onPress={() => handlePress(option.value)}>
+					<Checkbox selected={selected === option.value} />
 					<Text>{option.label}</Text>
 				</Option>
 			))}
