@@ -5,7 +5,7 @@ import timeToLiveCalculator from '../calculators/ttl-calculator';
 function reducer(state = initialState, action) {
 	switch (action.type) {
 		case actionTypes.FINISH_ONBOARDING:
-			return state.merge({ onboardingFinished: true, ttl: timeToLiveCalculator(state) });
+			return state.merge({ onboardingFinished: true, geneticAgeAtDeath: timeToLiveCalculator(state) });
 		case actionTypes.UPDATE_PERSONAL_INFO:
 			return state.set(action.info, action.value);
 		case actionTypes.UPDATE_RELATIVE_INFO:

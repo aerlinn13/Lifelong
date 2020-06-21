@@ -6,7 +6,7 @@ const initialState = new Map({
 	lastName: '',
 	dob: '',
 	gender: '',
-	ttl: 0,
+	geneticAgeAtDeath: 0,
 	delta: 0,
 	weight: 0,
 	height: 0,
