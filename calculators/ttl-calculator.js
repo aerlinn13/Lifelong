@@ -5,10 +5,8 @@ const inMinutes = (age) => {
 };
 
 const timeToLiveCalculator = (state) => {
-	// personal data
-	const dob = state.get('dob');
 	const gender = state.get('gender');
-	// relative data
+
 	const mother = {
 		age: inMinutes(state.getIn([ 'relatives', 'mother', 'age' ])),
 		deceased: !!state.getIn([ 'relatives', 'mother', 'dead' ]),
@@ -81,6 +79,16 @@ const timeToLiveCalculator = (state) => {
 	});
 	geneticAgeAtDeath = geneticAgeAtDeath / amountOfRelativesToCount;
 
+	if (amountOfRelativesToCount === 0) {
+		switch (gender) {
+			case 'm':
+				geneticAgeAtDeath = 79.2 * MINUTES_IN_YEAR;
+				break;
+			case 'f':
+				geneticAgeAtDeath = 82.9 * MINUTES_IN_YEAR;
+				break;
+		}
+	}
 	return geneticAgeAtDeath;
 };
 
