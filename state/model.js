@@ -6,9 +6,10 @@ const initialState = new Map({
 	lastName: '',
 	dob: '',
 	gender: '',
-	ttl: '0',
-	weight: '0',
-	height: '0',
+	ttl: 0,
+	delta: 0,
+	weight: 0,
+	height: 0,
 	onboardingFinished: false,
 	relatives: Map({
 		mother: Map({}),

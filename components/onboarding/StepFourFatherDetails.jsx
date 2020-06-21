@@ -1,27 +1,36 @@
 import React, { useState } from 'react';
 import { OnboardingHeader, RelativeProfile, ConfirmButton } from './layout';
 
-const StepFourFatherDetails = ({ step, setStep }) => {
+const StepFourFatherDetails = ({ step, setStep, updateRelativeInfo }) => {
 	const [ internalStep, setInternalStep ] = useState(0);
 
 	const renderStep = () => {
 		switch (internalStep) {
 			case 0:
-				return <RelativeProfile key={`relative-${step}-${internalStep}`} label="His age" onChange={() => {}} />;
+				return (
+					<RelativeProfile
+						key={`relative-${step}-${internalStep}`}
+						label="His age"
+						relative="father"
+						updateRelativeInfo={updateRelativeInfo}
+					/>
+				);
 			case 1:
 				return (
 					<RelativeProfile
 						key={`relative-${step}-${internalStep}`}
+						relative="paternalGrandfather"
 						label="His father's age"
-						onChange={() => {}}
+						updateRelativeInfo={updateRelativeInfo}
 					/>
 				);
 			case 2:
 				return (
 					<RelativeProfile
 						key={`relative-${step}-${internalStep}`}
+						relative="paternalGrandmother"
 						label="His mother's age"
-						onChange={() => {}}
+						updateRelativeInfo={updateRelativeInfo}
 					/>
 				);
 		}

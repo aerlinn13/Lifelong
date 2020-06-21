@@ -48,18 +48,34 @@ const Text = styled.Text`
 	padding-left: 20px;
 `;
 
-const RelativeProfile = ({ label, placeholder, onChange }) => {
+const RelativeProfile = ({ label, placeholder, relative, updateRelativeInfo }) => {
 	const [ deceased, setDeceased ] = useState(false);
 	const [ cause, setCause ] = useState(false);
 	return (
 		<Container>
 			<Label>{label}</Label>
-			<TextInput placeholder={placeholder} keyboardType="numeric" onChangeText={(text) => onChange(text)} />
-			<Option key="dead" onPress={() => setDeceased(!deceased)}>
+			<TextInput
+				placeholder={placeholder}
+				keyboardType="numeric"
+				onChangeText={(text) => updateRelativeInfo(relative, 'age', text)}
+			/>
+			<Option
+				key="dead"
+				onPress={() => {
+					setDeceased(!deceased);
+					updateRelativeInfo(relative, 'dead', !deceased);
+				}}
+			>
 				<Checkbox selected={deceased} />
 				<Text>Deceased</Text>
 			</Option>
-			<Option key="cause" onPress={() => setCause(!cause)}>
+			<Option
+				key="cause"
+				onPress={() => {
+					setCause(!cause);
+					updateRelativeInfo(relative, 'cause', !cause);
+				}}
+			>
 				<Checkbox selected={cause} />
 				<Text>By natural cause</Text>
 			</Option>

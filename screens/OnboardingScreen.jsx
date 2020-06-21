@@ -11,7 +11,7 @@ import {
 	StepFiveFinal
 } from '../components/onboarding';
 
-const OnboardingScreen = ({ finishOnboarding, updatePersonalInfo, updateRelativeInfo, weight }) => {
+const OnboardingScreen = ({ finishOnboarding, updatePersonalInfo, updateRelativeInfo }) => {
 	const [ step, setStep ] = useState(0);
 	const renderSteps = () => {
 		switch (step) {
@@ -29,7 +29,6 @@ const OnboardingScreen = ({ finishOnboarding, updatePersonalInfo, updateRelative
 				return null;
 		}
 	};
-	console.log(weight);
 	return (
 		<SafeAreaView>
 			<KeyboardAvoidingView>
