@@ -14,7 +14,7 @@ const Option = styled.TouchableOpacity`
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	margin-top: 30px;
+	margin-top: 20px;
 	width: 30%;
 `;
 
@@ -27,18 +27,18 @@ const Checkbox = styled.View`
 `;
 
 const Label = styled.Text`
-	font-family: LoraRegular;
+	font-family: KhulaRegular;
 	font-size: 18px;
-	padding-top: 30px;
+	padding-top: 10px;
 `;
 
 const Text = styled.Text`
-	font-family: LoraRegular;
+	font-family: KhulaRegular;
 	font-size: 18px;
 	padding-left: 20px;
 `;
 
-const Radio = ({ label, options, selectedValue, onPress }) => {
+const Radio = ({ label, options, onPress }) => {
 	const [ selected, setSelected ] = useState(null);
 	const handlePress = (value) => {
 		onPress(value);

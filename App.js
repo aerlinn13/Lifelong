@@ -34,9 +34,10 @@ if (__DEV__) {
 
 const fetchFonts = () => {
 	return Font.loadAsync({
-		LoraBold: require('./assets/fonts/Lora-Bold.ttf'),
-		LoraItalic: require('./assets/fonts/Lora-Italic.ttf'),
-		LoraRegular: require('./assets/fonts/Lora-Regular.ttf')
+		KhulaBold: require('./assets/fonts/Khula-Bold.ttf'),
+		KhulaLight: require('./assets/fonts/Khula-Light.ttf'),
+		KhulaRegular: require('./assets/fonts/Khula-Regular.ttf'),
+		KhulaSemibold: require('./assets/fonts/Khula-SemiBold.ttf')
 	});
 };
 

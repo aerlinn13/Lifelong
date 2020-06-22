@@ -1,11 +1,17 @@
 import initialState from './model';
 import * as actionTypes from './actionTypes';
-import timeToLiveCalculator from '../calculators/ttl-calculator';
+import geneticCalculator from '../calculators/geneticCalculator';
+import negativeBMICalculator, { bmiRate } from '../calculators/bmiCalculator';
 
 function reducer(state = initialState, action) {
 	switch (action.type) {
 		case actionTypes.FINISH_ONBOARDING:
-			return state.merge({ onboardingFinished: true, geneticAgeAtDeath: timeToLiveCalculator(state) });
+			return state.merge({
+				onboardingFinished: true,
+				geneticAgeAtDeath: geneticCalculator(state),
+				negativeBMIInfluence: negativeBMICalculator(state),
+				bmi: bmiRate(state)
+			});
 		case actionTypes.UPDATE_PERSONAL_INFO:
 			return state.set(action.info, action.value);
 		case actionTypes.UPDATE_RELATIVE_INFO:

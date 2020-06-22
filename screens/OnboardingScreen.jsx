@@ -31,9 +31,9 @@ const OnboardingScreen = ({ finishOnboarding, updatePersonalInfo, updateRelative
 	};
 	return (
 		<SafeAreaView>
-			<KeyboardAvoidingView>
-				<ScrollView bounces={false}>{renderSteps()}</ScrollView>
-			</KeyboardAvoidingView>
+			<ScrollView bounces={false} keyboardDismissMode="on-drag" keyboardShouldPersistTaps={true}>
+				{renderSteps()}
+			</ScrollView>
 		</SafeAreaView>
 	);
 };

@@ -4,9 +4,9 @@ import styled from 'styled-components/native';
 const Container = styled.View`padding: 0px 30px;`;
 
 const TextInput = styled.TextInput`
-	font-family: LoraRegular;
+	font-family: KhulaRegular;
 	font-size: 30px;
-	padding: 20px 30px 20px 30px;
+	padding: 10px 30px 10px 30px;
 	text-align: center;
 	border-style: solid;
 	border-bottom-width: 1px;
@@ -14,10 +14,10 @@ const TextInput = styled.TextInput`
 `;
 
 const Label = styled.Text`
-	font-family: LoraRegular;
+	font-family: KhulaRegular;
 	text-align: center;
 	font-size: 18px;
-	padding-top: 30px;
+	padding-top: 15px;
 `;
 
 const Textfield = ({ label, placeholder, onChange, type = 'default' }) => {

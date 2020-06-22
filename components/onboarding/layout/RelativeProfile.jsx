@@ -9,9 +9,9 @@ const Container = styled.View`
 `;
 
 const TextInput = styled.TextInput`
-	font-family: LoraRegular;
+	font-family: KhulaRegular;
 	font-size: 30px;
-	padding: 20px 30px 20px 30px;
+	padding: 10px 30px 10px 30px;
 	text-align: center;
 	border-style: solid;
 	border-bottom-width: 1px;
@@ -36,14 +36,14 @@ const Checkbox = styled.View`
 `;
 
 const Label = styled.Text`
-	font-family: LoraRegular;
+	font-family: KhulaRegular;
 	font-size: 18px;
-	padding-top: 30px;
+	padding-top: 10px;
 	text-align: center;
 `;
 
 const Text = styled.Text`
-	font-family: LoraRegular;
+	font-family: KhulaRegular;
 	font-size: 18px;
 	padding-left: 20px;
 `;

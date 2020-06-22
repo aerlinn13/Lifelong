@@ -25,7 +25,7 @@ const Button = styled.TouchableOpacity`
 
 const ButtonText = styled.Text`
 	color: white;
-	font-family: LoraBold;
+	font-family: KhulaBold;
 	font-size: 18px;
 	text-align: center;
 `;

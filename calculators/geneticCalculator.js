@@ -4,7 +4,7 @@ const inMinutes = (age) => {
 	return parseInt(age, 10) * MINUTES_IN_YEAR;
 };
 
-const timeToLiveCalculator = (state) => {
+const geneticCalculator = (state) => {
 	const gender = state.get('gender');
 
 	const mother = {
@@ -92,4 +92,4 @@ const timeToLiveCalculator = (state) => {
 	return geneticAgeAtDeath;
 };
 
-export default timeToLiveCalculator;
+export default geneticCalculator;
