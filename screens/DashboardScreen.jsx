@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { DeathCounter } from '../components/dashboard';
 
 const StyledView = styled.View`
 	background-color: white;
@@ -18,25 +19,12 @@ const Label = styled.Text`
 
 const DashboardScreen = ({ weight, dob, bmi, lifespan }) => {
 	const death = moment(dob, 'dd.mm.yyyy').add(lifespan, 'minutes');
-	const duration = moment.duration(death.diff(moment()));
-
-	const calculateTimeToLive = () => {
-		const years = duration.years();
-		const months = duration.months();
-		const days = duration.days();
-		const hours = duration.hours();
-		const minutes = duration.minutes();
-		const seconds = duration.seconds();
-		return `Left ${years} years, ${months} months, ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds.`;
-	};
 
 	return (
 		<SafeAreaView>
 			<StyledView>
-				{/* <Label>{`Weight ${weight} kg`}</Label>
-				<Label>{`BMI ${bmi}`}</Label> */}
+				<DeathCounter death={death} />
 				<Label>{`Last day ${death.format('DD MMMM, YYYY')}`}</Label>
-				<Label>{calculateTimeToLive()}</Label>
 			</StyledView>
 		</SafeAreaView>
 	);

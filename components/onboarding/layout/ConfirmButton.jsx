@@ -9,7 +9,7 @@ const Container = styled.View`
 `;
 
 const Button = styled.TouchableOpacity`
-	background-color: ${(props) => (props.disabled ? 'c0c0c0' : '#779ecb')};
+	background-color: ${(props) => (props.disabled ? '#c0c0c0' : '#779ecb')};
 	opacity: ${(props) => (props.disabled ? 0.6 : 1)};
 	color: black;
 	width: 100px;
