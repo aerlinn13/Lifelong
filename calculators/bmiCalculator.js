@@ -1,13 +1,13 @@
 const MINUTES_IN_YEAR = 525600;
 
 export const bmiRate = (state) => {
-	const weight = parseInt(state.get('weight'), 10);
-	const height = parseInt(state.get('height'), 10) / 100;
+	const weight = parseInt(state.weight, 10);
+	const height = parseInt(state.height, 10) / 100;
 	return weight / (height * height).toFixed(2);
 };
 
 const negativeBMICalculator = (state) => {
-	const gender = state.get('gender');
+	const gender = state.gender;
 	const bmi = bmiRate(state);
 
 	if (bmi > 35) {

@@ -5,42 +5,42 @@ const inMinutes = (age) => {
 };
 
 const geneticCalculator = (state) => {
-	const gender = state.get('gender');
+	const gender = state.gender;
 
 	const mother = {
-		age: inMinutes(state.getIn([ 'relatives', 'mother', 'age' ])),
-		deceased: !!state.getIn([ 'relatives', 'mother', 'dead' ]),
-		naturalCause: !!state.getIn([ 'relatives', 'mother', 'cause' ])
+		age: inMinutes(state.mother.age),
+		deceased: !!state.mother.dead,
+		naturalCause: !!state.mother.cause
 	};
 
 	const maternalGrandmother = {
-		age: inMinutes(state.getIn([ 'relatives', 'maternalGrandmother', 'age' ])),
-		deceased: !!state.getIn([ 'relatives', 'maternalGrandmother', 'dead' ]),
-		naturalCause: !!state.getIn([ 'relatives', 'maternalGrandmother', 'cause' ])
+		age: inMinutes(state.maternalGrandmother.age),
+		deceased: !!state.maternalGrandmother.dead,
+		naturalCause: !!state.maternalGrandmother.cause
 	};
 
 	const maternalGrandfather = {
-		age: inMinutes(state.getIn([ 'relatives', 'maternalGrandfather', 'age' ])),
-		deceased: !!state.getIn([ 'relatives', 'maternalGrandfather', 'dead' ]),
-		naturalCause: !!state.getIn([ 'relatives', 'maternalGrandfather', 'cause' ])
+		age: inMinutes(state.maternalGrandfather.age),
+		deceased: !!state.maternalGrandfather.dead,
+		naturalCause: !!state.maternalGrandfather.cause
 	};
 
 	const father = {
-		age: inMinutes(state.getIn([ 'relatives', 'father', 'age' ])),
-		deceased: !!state.getIn([ 'relatives', 'father', 'dead' ]),
-		naturalCause: !!state.getIn([ 'relatives', 'father', 'cause' ])
+		age: inMinutes(state.father.age),
+		deceased: !!state.father.dead,
+		naturalCause: !!state.father.cause
 	};
 
 	const paternalGrandmother = {
-		age: inMinutes(state.getIn([ 'relatives', 'paternalGrandmother', 'age' ])),
-		deceased: !!state.getIn([ 'relatives', 'paternalGrandmother', 'dead' ]),
-		naturalCause: !!state.getIn([ 'relatives', 'paternalGrandmother', 'cause' ])
+		age: inMinutes(state.paternalGrandmother.age),
+		deceased: !!state.paternalGrandmother.dead,
+		naturalCause: !!state.paternalGrandmother.cause
 	};
 
 	const paternalGrandfather = {
-		age: inMinutes(state.getIn([ 'relatives', 'paternalGrandfather', 'age' ])),
-		deceased: !!state.getIn([ 'relatives', 'paternalGrandfather', 'dead' ]),
-		naturalCause: !!state.getIn([ 'relatives', 'paternalGrandfather', 'cause' ])
+		age: inMinutes(state.paternalGrandfather.age),
+		deceased: !!state.paternalGrandfather.dead,
+		naturalCause: !!state.paternalGrandfather.cause
 	};
 
 	const baseRelatives = [];

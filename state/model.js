@@ -1,6 +1,4 @@
-import { Map } from 'immutable';
-
-const initialState = new Map({
+const initialState = {
 	reports: [],
 	firstName: '',
 	lastName: '',
@@ -12,15 +10,13 @@ const initialState = new Map({
 	weight: 0,
 	height: 0,
 	onboardingFinished: false,
-	relatives: Map({
-		mother: Map({}),
-		maternalGrandmother: Map({}),
-		maternalGrandfather: Map({}),
-		father: Map({}),
-		paternalGrandmother: Map({}),
-		paternalGrandfather: Map({})
-	}),
+	mother: {},
+	maternalGrandmother: {},
+	maternalGrandfather: {},
+	father: {},
+	paternalGrandmother: {},
+	paternalGrandfather: {},
 	strikes: {}
-});
+};
 
 export default initialState;

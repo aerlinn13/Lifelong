@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components/native';
 import moment from 'moment';
 
@@ -19,10 +19,26 @@ const Label = styled.Text`
 	font-size: 32px;
 	font-family: KhulaBold;
 	margin-top: 35px;
+	position: absolute;
 `;
 
+const MiniLabel = styled(Label)`
+    font-size: 16px;
+    position: relative;
+    bottom: -60px;
+    margin: 0px 15px;
+`;
+
+const MiniLabels = styled.View`
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+`;
+
+const Separator = styled.View`flex-grow: 2;`;
+
 const calculateTimeToLive = (deathTime) => {
-	moment.duration(deathTime.diff(moment()));
 	const duration = moment.duration(deathTime.diff(moment()));
 	const years = duration.years();
 	const months = duration.months();
@@ -59,6 +75,11 @@ class DeathCounter extends React.Component {
 		return (
 			<Wrapper>
 				<Label>{this.state.timeToLive}</Label>
+				<MiniLabels>
+					<MiniLabel>{`${this.props.lifespan / 525600} years`}</MiniLabel>
+					<Separator />
+					<MiniLabel>{this.props.death.format('DD MMMM, YYYY')}</MiniLabel>
+				</MiniLabels>
 			</Wrapper>
 		);
 	}

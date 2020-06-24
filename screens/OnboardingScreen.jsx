@@ -31,7 +31,7 @@ const OnboardingScreen = ({ finishOnboarding, updatePersonalInfo, updateRelative
 	};
 	return (
 		<SafeAreaView>
-			<ScrollView bounces={false} keyboardDismissMode="on-drag" keyboardShouldPersistTaps={true}>
+			<ScrollView bounces={false} keyboardDismissMode="on-drag" keyboardShouldPersistTaps="always">
 				{renderSteps()}
 			</ScrollView>
 		</SafeAreaView>
@@ -39,13 +39,13 @@ const OnboardingScreen = ({ finishOnboarding, updatePersonalInfo, updateRelative
 };
 
 const mapStateToProps = (state) => ({
-	weight: state.get('weight')
+	weight: state.weight
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	finishOnboarding: () => {
 		dispatch(finishOnboarding());
-		ownProps.navigation.navigate('Dashboard');
+		ownProps.navigation.replace('Dashboard');
 	},
 	updatePersonalInfo: (info, value) => dispatch(updatePersonalInfo(info, value)),
 	updateRelativeInfo: (relative, info, value) => dispatch(updateRelativeInfo(relative, info, value))

@@ -6,18 +6,31 @@ import negativeBMICalculator, { bmiRate } from '../calculators/bmiCalculator';
 function reducer(state = initialState, action) {
 	switch (action.type) {
 		case actionTypes.FINISH_ONBOARDING:
-			return state.merge({
+			return {
+				...state,
 				onboardingFinished: true,
 				geneticAgeAtDeath: geneticCalculator(state),
 				negativeBMIInfluence: negativeBMICalculator(state),
 				bmi: bmiRate(state)
-			});
+			};
 		case actionTypes.UPDATE_PERSONAL_INFO:
-			return state.set(action.info, action.value);
+			return {
+				...state,
+				[action.info]: action.value
+			};
 		case actionTypes.UPDATE_RELATIVE_INFO:
-			return state.setIn([ 'relatives', action.relative, action.info ], action.value);
+			return {
+				...state,
+				[action.relative]: action.info
+			};
 		case actionTypes.SAVE_DAILY_REPORT:
-			return state.setIn([ 'reports', action.date ], action.report);
+			return {
+				...state,
+				reports: {
+					...state.reports,
+					[action.date]: action.report
+				}
+			};
 		default:
 			return state;
 	}

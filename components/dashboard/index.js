@@ -1,3 +1,4 @@
 import DeathCounter from './DeathCounter';
-
-export { DeathCounter };
+import WeightIndicator from './WeightIndicator';
+import BMIIndicator from './BMIIndicator';
+export { DeathCounter, WeightIndicator, BMIIndicator };
