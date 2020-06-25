@@ -11,13 +11,13 @@ const Wrapper = styled.View`
 const Text = styled.Text`
 	color: black;
 	font-size: 20px;
-	font-family: KhulaSemiBold;
+	font-family: KhulaLight;
 	margin: 10px 0px -15px 22px;
 `;
 
 const WeightIndicator = ({ weight }) => (
 	<Wrapper>
-		<Text>{`WEIGHT ${weight}`}</Text>
+		<Text>{`Weight ${weight}`}</Text>
 	</Wrapper>
 );
 

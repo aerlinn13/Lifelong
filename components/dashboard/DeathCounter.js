@@ -16,16 +16,17 @@ const Wrapper = styled.View`
 
 const Label = styled.Text`
 	color: white;
-	font-size: 32px;
-	font-family: KhulaBold;
+	font-size: 40px;
+	font-family: KhulaLight;
 	margin-top: 35px;
 	position: absolute;
 `;
 
 const MiniLabel = styled(Label)`
     font-size: 16px;
+    font-family: KhulaRegular;
     position: relative;
-    bottom: -60px;
+    bottom: -65px;
     margin: 0px 15px;
 `;
 
