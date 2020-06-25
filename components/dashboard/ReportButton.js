@@ -12,7 +12,7 @@ const Wrapper = styled.TouchableOpacity`
 	background-color: black;
 	position: absolute;
 	margin: 0px 33%;
-	bottom: 5px;
+	bottom: 15px;
 `;
 
 const Text = styled.Text`

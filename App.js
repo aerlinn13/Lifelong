@@ -10,6 +10,7 @@ import Reactotron from 'reactotron-react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { reactotronRedux } from 'reactotron-redux';
 import { persistReducer, persistStore } from 'redux-persist';
+import { StatusBar } from 'expo-status-bar';
 
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -75,6 +76,7 @@ export default function App() {
 							<Stack.Screen name="Onboarding" component={OnboardingScreen} />
 							<Stack.Screen name="DailyReport" component={DailyReportScreen} />
 						</Stack.Navigator>
+						<StatusBar style="dark" />
 					</NavigationContainer>
 				</SafeAreaProvider>
 			</PersistGate>
