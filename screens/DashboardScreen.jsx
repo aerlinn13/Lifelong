@@ -3,18 +3,20 @@ import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { DeathCounter, WeightIndicator, BMIIndicator } from '../components/dashboard';
+import {
+	DeathCounter,
+	WeightIndicator,
+	BMIIndicator,
+	TimeIndicator,
+	ModifiersFeed,
+	ReportButton
+} from '../components/dashboard';
 
 const StyledView = styled.View`
-	background-color: white;
+	background-color: #f3f3f3;
 	height: 100%;
 	width: 100%;
-`;
-
-const Label = styled.Text`
-	color: black;
-	font-family: KhulaRegular;
-	text-align: center;
+	position: relative;
 `;
 
 const Mask = styled.View`
@@ -34,6 +36,14 @@ const Indicators = styled.View`
 	align-items: center;
 `;
 
+const TimeIndicators = styled.View`
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 20px;
+`;
+
 const DashboardScreen = ({ weight, dob, bmi, lifespan }) => {
 	const death = moment(dob, 'dd.mm.yyyy').add(lifespan, 'minutes');
 	const [ maskDisabled, setMaskDisabled ] = useState(false);
@@ -50,6 +60,12 @@ const DashboardScreen = ({ weight, dob, bmi, lifespan }) => {
 						<BMIIndicator bmi={bmi} />
 					</Indicators>
 					<DeathCounter death={death} lifespan={lifespan} />
+					<TimeIndicators>
+						<TimeIndicator time="3y23d11h20m" label="won" color="#7ED321" />
+						<TimeIndicator time="45d16h1m" label="lost" color="#D0021B" />
+					</TimeIndicators>
+					<ModifiersFeed />
+					<ReportButton />
 				</StyledView>
 			</SafeAreaView>
 			<Mask disabled={maskDisabled} />
