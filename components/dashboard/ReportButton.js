@@ -11,7 +11,7 @@ const Wrapper = styled.TouchableOpacity`
 	border-radius: 5px;
 	background-color: #fda857;
 	position: absolute;
-	bottom: 10px;
+	bottom: 30px;
 	right: 30px;
 `;
 

@@ -9,7 +9,7 @@ const Wrapper = styled.View`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border-radius: 5px;
+	border-radius: 10px;
 	background-color: white;
 	position: relative;
 	padding: 15px 5px;

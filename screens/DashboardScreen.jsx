@@ -17,6 +17,8 @@ const StyledView = styled.View`
 	height: 100%;
 	width: 100%;
 	position: relative;
+	display: flex;
+	flex-direction: column;
 `;
 
 const Mask = styled.View`

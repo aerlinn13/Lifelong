@@ -6,7 +6,7 @@ const Wrapper = styled.View`
 	height: 120px;
 	width: 90%;
 	background-color: black;
-	border-radius: 5px;
+	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

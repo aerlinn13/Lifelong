@@ -1,23 +1,30 @@
+const POSITIVE = '+';
+const NEGATIVE = '–';
+
 const lifespanModifiers = [
 	{
-		text: 'Test modifier 1',
+		text: 'Short walk',
 		value: '15m',
-		minutes: 15
+		minutes: 15,
+		type: POSITIVE
 	},
 	{
-		text: 'Test modifier 2',
-		value: '1d16h15m',
-		minutes: 2415
+		text: `Read smart book`,
+		value: '6h15m',
+		minutes: 375,
+		type: POSITIVE
 	},
 	{
-		text: 'Test modifier 3',
-		value: '1d1h10m',
-		minutes: 1510
+		text: 'Called father',
+		value: '1h10m',
+		minutes: 70,
+		type: POSITIVE
 	},
 	{
-		text: 'Test modifier 4',
-		value: '6h20m',
-		minutes: 380
+		text: 'Drank 2 pints of beer',
+		value: '40m',
+		minutes: 40,
+		type: NEGATIVE
 	}
 ];
 
