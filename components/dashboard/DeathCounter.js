@@ -77,7 +77,7 @@ class DeathCounter extends React.Component {
 			<Wrapper>
 				<Label>{this.state.timeToLive}</Label>
 				<MiniLabels>
-					<MiniLabel>{`${this.props.lifespan / 525600} years`}</MiniLabel>
+					<MiniLabel>{`${this.props.lifespan / 525600} years old`}</MiniLabel>
 					<Separator />
 					<MiniLabel>{this.props.death.format('DD MMMM, YYYY')}</MiniLabel>
 				</MiniLabels>

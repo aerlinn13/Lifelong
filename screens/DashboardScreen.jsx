@@ -44,7 +44,7 @@ const TimeIndicators = styled.View`
 	padding: 0px 20px;
 `;
 
-const DashboardScreen = ({ weight, dob, bmi, lifespan }) => {
+const DashboardScreen = ({ weight, dob, bmi, lifespan, timeWon, timeLost }) => {
 	const death = moment(dob, 'dd.mm.yyyy').add(lifespan, 'minutes');
 	const [ maskDisabled, setMaskDisabled ] = useState(false);
 
@@ -61,8 +61,8 @@ const DashboardScreen = ({ weight, dob, bmi, lifespan }) => {
 					</Indicators>
 					<DeathCounter death={death} lifespan={lifespan} />
 					<TimeIndicators>
-						<TimeIndicator time="3y23d11h20m" label="won" color="#7ED321" />
-						<TimeIndicator time="45d16h1m" label="lost" color="#D0021B" />
+						<TimeIndicator time={timeWon} label="won" color="#7ED321" />
+						<TimeIndicator time={timeLost} label="lost" color="#D0021B" />
 					</TimeIndicators>
 					<ModifiersFeed />
 					<ReportButton />
@@ -78,7 +78,9 @@ const mapStateToProps = (state) => {
 		weight: state.weight,
 		dob: state.dob,
 		bmi: state.bmi,
-		lifespan: state.geneticAgeAtDeath - state.negativeBMIInfluence
+		lifespan: state.geneticAgeAtDeath - state.negativeBMIInfluence,
+		timeWon: state.timeWon,
+		timeLost: state.timeLost
 	};
 };
 

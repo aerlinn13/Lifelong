@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import timeCalculator from '../../calculators/timeCalculator';
 
 const Wrapper = styled.View`
 	width: 47%;
@@ -39,8 +40,7 @@ const Sign = styled.View`
 const TimeIndicator = ({ time, label, color }) => (
 	<Wrapper>
 		<Sign color={color} />
-
-		<Header>{time}</Header>
+		<Header>{timeCalculator(time)}</Header>
 		<Text>{label}</Text>
 	</Wrapper>
 );
