@@ -2,28 +2,28 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 const Wrapper = styled.TouchableOpacity`
-	width: 33%;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border-radius: 25px;
-	background-color: black;
+	border-radius: 5px;
+	background-color: #fda857;
 	position: absolute;
-	margin: 0px 33%;
-	bottom: 15px;
+	bottom: 10px;
+	right: 30px;
 `;
 
 const Text = styled.Text`
 	color: white;
-	font-size: 16px;
+	font-size: 30px;
 	font-family: KhulaSemiBold;
 `;
 
 const ReportButton = () => (
 	<Wrapper>
-		<Text>Daily report</Text>
+		<Text>{'+'}</Text>
 	</Wrapper>
 );
 

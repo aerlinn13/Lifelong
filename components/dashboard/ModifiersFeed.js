@@ -15,11 +15,12 @@ const Header = styled.Text`
 	color: black;
 	font-size: 20px;
 	font-family: KhulaLight;
+	text-align: left;
 `;
 
 const ModifiersFeed = ({ time, label, color }) => (
 	<Wrapper>
-		<Header>Latest lifespan modifiers</Header>
+		<Header>Lifespan modifiers</Header>
 	</Wrapper>
 );
 
