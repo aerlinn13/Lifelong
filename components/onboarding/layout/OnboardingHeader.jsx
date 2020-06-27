@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 const Header = styled.Text`
 	text-align: left;
-	font-size: 24px;
+	font-size: 22px;
 	font-family: KhulaLight;
 	padding: 20px 20px 10px 20px;
 `;

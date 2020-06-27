@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 const Wrapper = styled.TouchableOpacity`
-	width: 40px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -13,11 +13,12 @@ const Wrapper = styled.TouchableOpacity`
 	position: absolute;
 	bottom: 30px;
 	right: 30px;
+	z-index: 20;
 `;
 
 const Text = styled.Text`
 	color: white;
-	font-size: 30px;
+	font-size: 45px;
 	font-family: KhulaSemiBold;
 	transform: ${(props) => (props.addModifiersMode ? 'rotate(45deg)' : 'rotate(0deg)')};
 `;

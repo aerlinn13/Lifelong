@@ -1,10 +1,11 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import lifespanModifiers from '../../data/lifespanModifiers';
 
 const Wrapper = styled.View`
 	display: flex;
+	width: ${(props) => `${Dimensions.get('window').width - 40}px`};
 	flex-direction: column;
 	flex-grow: 2;
 	border-radius: 10px;
@@ -28,7 +29,7 @@ const Cell = styled.View`
 `;
 
 const EmptyCell = styled(Cell)`
-justify-content: center;
+	justify-content: center;
 `;
 
 const Header = styled.Text`
@@ -78,30 +79,32 @@ const rowRenderer = (item, index) => {
 
 const getData = (userModifiers) => {
 	const modifiers = userModifiers.map((id) => lifespanModifiers[id]);
-	console.log(userModifiers, modifiers);
-	if (modifiers.length > 20) {
-		modifiers.length = 20;
-		return [ ...modifiers, { type: 'LAST', text: 'Showing last 20 records' } ];
+
+	if (modifiers.length > 5) {
+		modifiers.length = 5;
+		return [ ...modifiers, { type: 'LAST', text: 'Showing last 5 records' } ];
 	}
-	return [ ...modifiers, { type: 'LAST', text: '' } ];
+	return [ ...modifiers, { type: 'LAST', text: `Showing last ${modifiers.length} records` } ];
 };
 
-const ModifiersFeed = ({ userModifiers }) => (
-	<Wrapper>
-		<FlatList
-			ItemSeparatorComponent={() => <Separator />}
-			data={getData(userModifiers)}
-			style={{ flexGrow: 2 }}
-			renderItem={({ item, index }) => rowRenderer(item, index)}
-			keyExtractor={(item, index) => item.text + index}
-			bounces={false}
-			ListEmptyComponent={
-				<EmptyCell>
-					<Span>Tap orange button to add lifespan modifiers</Span>
-				</EmptyCell>
-			}
-		/>
-	</Wrapper>
-);
+const ModifiersFeed = ({ userModifiers }) => {
+	return (
+		<Wrapper>
+			<FlatList
+				ItemSeparatorComponent={() => <Separator />}
+				data={getData(userModifiers)}
+				style={{ flexGrow: 2 }}
+				renderItem={({ item, index }) => rowRenderer(item, index)}
+				keyExtractor={(item, index) => item.text + index}
+				bounces={false}
+				ListEmptyComponent={
+					<EmptyCell>
+						<Span>Tap orange button to add lifespan modifiers</Span>
+					</EmptyCell>
+				}
+			/>
+		</Wrapper>
+	);
+};
 
 export default ModifiersFeed;

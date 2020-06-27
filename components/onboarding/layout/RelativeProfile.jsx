@@ -10,7 +10,7 @@ const Container = styled.View`
 
 const TextInput = styled.TextInput`
 	font-family: KhulaRegular;
-	font-size: 30px;
+	font-size: 20px;
 	padding: 10px 30px 10px 30px;
 	text-align: center;
 	border-style: solid;
@@ -23,8 +23,8 @@ const Option = styled.TouchableOpacity`
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	margin-top: 30px;
-	width: 50%;
+	margin-top: 20px;
+	width: 60%;
 `;
 
 const Checkbox = styled.View`
@@ -57,6 +57,7 @@ const RelativeProfile = ({ label, placeholder, relative, updateRelativeInfo }) =
 			<TextInput
 				placeholder={placeholder}
 				keyboardType="numeric"
+				returnKeyType="done"
 				onChangeText={(text) => updateRelativeInfo(relative, 'age', text)}
 			/>
 			<Option

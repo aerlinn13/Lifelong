@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import lifespanModifiers from '../../data/lifespanModifiers';
@@ -9,6 +9,7 @@ import AddModifierCell from './AddModifierCell';
 
 const Wrapper = styled.View`
 	display: flex;
+	width: ${(props) => `${Dimensions.get('window').width - 40}px`};
 	flex-direction: column;
 	flex-grow: 2;
 	border-radius: 10px;

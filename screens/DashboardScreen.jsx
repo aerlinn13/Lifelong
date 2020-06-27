@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Animated } from 'react-native';
+import { Animated, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -46,6 +46,13 @@ const TimeIndicators = styled.View`
 	justify-content: space-between;
 	align-items: center;
 	padding: 0px 20px;
+`;
+
+const Lists = styled.View`
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
 `;
 
 const DashboardScreen = ({
@@ -95,51 +102,41 @@ const DashboardScreen = ({
 		<React.Fragment>
 			<SafeAreaView>
 				<StyledView>
+					<Indicators>
+						<WeightIndicator weight={weight} />
+						<BMIIndicator bmi={bmi} />
+					</Indicators>
+					<DeathCounter death={death} lifespan={lifespan} />
+
+					<TimeIndicators>
+						<TimeIndicator time={timeWon} label="won" color="#7ED321" />
+						<TimeIndicator time={timeLost} label="lost" color="#D0021B" />
+					</TimeIndicators>
+
 					<Animated.View
 						style={[
 							{
 								transform: [
 									{
-										translateY: animation.interpolate({
+										translateX: animation.interpolate({
 											inputRange: [ 0, 1 ],
-											outputRange: [ 0, -500 ]
+											outputRange: [ 0, -410 ]
 										})
 									}
 								]
 							}
 						]}
 					>
-						<Indicators>
-							<WeightIndicator weight={weight} />
-							<BMIIndicator bmi={bmi} />
-						</Indicators>
-						<DeathCounter death={death} lifespan={lifespan} />
+						<Lists>
+							<ModifiersFeed userModifiers={lifespanModifiers} />
+							<AddModifiersList />
+						</Lists>
 					</Animated.View>
-					<Animated.View
-						style={[
-							{
-								transform: [
-									{
-										translateY: animation.interpolate({
-											inputRange: [ 0, 1 ],
-											outputRange: [ 0, -180 ]
-										})
-									}
-								]
-							}
-						]}
-					>
-						<TimeIndicators>
-							<TimeIndicator time={timeWon} label="won" color="#7ED321" />
-							<TimeIndicator time={timeLost} label="lost" color="#D0021B" />
-						</TimeIndicators>
-						{addModifiersMode ? <AddModifiersList /> : <ModifiersFeed userModifiers={lifespanModifiers} />}
-					</Animated.View>
-					<ReportButton
-						addModifiersMode={addModifiersMode}
-						onPressReportButton={() => setAddModifiersMode(!addModifiersMode)}
-					/>
 				</StyledView>
+				<ReportButton
+					addModifiersMode={addModifiersMode}
+					onPressReportButton={() => setAddModifiersMode(!addModifiersMode)}
+				/>
 			</SafeAreaView>
 			<Mask disabled={maskDisabled} />
 		</React.Fragment>
