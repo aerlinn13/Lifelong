@@ -6,7 +6,9 @@ const fuzzySearch = (value, data) => {
 	}
 	let results = fuzzysort.go(value, data, { key: 'text' });
 	results = results.sort((a, b) => a.score - b.score);
-	results.length = 20;
+	if (results.length > 20) {
+		results.length = 20;
+	}
 	return results.map((el) => el.obj);
 };
 

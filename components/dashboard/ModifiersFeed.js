@@ -62,7 +62,7 @@ const Sign = styled.View`
 const rowRenderer = (item, index) => {
 	if (item.type !== 'LAST') {
 		return (
-			<Cell key={index + item.text}>
+			<Cell key={'feed' + index}>
 				<Sign type={item.type === '+' ? '#7ED321' : '#D0021B'} />
 				<Header>{item.text}</Header>
 				<Label>{`${item.value}`}</Label>
@@ -76,24 +76,24 @@ const rowRenderer = (item, index) => {
 	);
 };
 
-const getData = () => {
-	return [];
-	let reducedModifiers = lifespanModifiers;
-	if (reducedModifiers.length > 20) {
-		reducedModifiers.length = 20;
-		return [ ...reducedModifiers, { type: 'LAST', text: 'Showing last 20 records' } ];
+const getData = (userModifiers) => {
+	const modifiers = userModifiers.map((id) => lifespanModifiers[id]);
+	console.log(userModifiers, modifiers);
+	if (modifiers.length > 20) {
+		modifiers.length = 20;
+		return [ ...modifiers, { type: 'LAST', text: 'Showing last 20 records' } ];
 	}
-	return [ ...reducedModifiers, { type: 'LAST', text: '' } ];
+	return [ ...modifiers, { type: 'LAST', text: '' } ];
 };
 
-const ModifiersFeed = () => (
+const ModifiersFeed = ({ userModifiers }) => (
 	<Wrapper>
 		<FlatList
 			ItemSeparatorComponent={() => <Separator />}
-			data={getData()}
+			data={getData(userModifiers)}
 			style={{ flexGrow: 2 }}
 			renderItem={({ item, index }) => rowRenderer(item, index)}
-			keyExtractor={(item) => item.text}
+			keyExtractor={(item, index) => item.text + index}
 			bounces={false}
 			ListEmptyComponent={
 				<EmptyCell>

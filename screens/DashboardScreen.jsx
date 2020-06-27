@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Animated } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -47,7 +48,17 @@ const TimeIndicators = styled.View`
 	padding: 0px 20px;
 `;
 
-const DashboardScreen = ({ navigation, weight, dob, bmi, lifespan, timeWon, timeLost, onboardingFinished }) => {
+const DashboardScreen = ({
+	navigation,
+	weight,
+	dob,
+	bmi,
+	lifespan,
+	timeWon,
+	timeLost,
+	onboardingFinished,
+	lifespanModifiers
+}) => {
 	useEffect(() => {
 		if (!onboardingFinished) {
 			navigation.replace('Onboarding');
@@ -62,20 +73,78 @@ const DashboardScreen = ({ navigation, weight, dob, bmi, lifespan, timeWon, time
 		setTimeout(() => setMaskDisabled(true), 1000);
 	}
 
+	const fadeAnimation = useRef(new Animated.Value(0)).current;
+	const scaleAnimation = useRef(new Animated.Value(100)).current;
+	React.useEffect(
+		() => {
+			if (addModifiersMode) {
+				Animated.timing(fadeAnimation, {
+					toValue: 1,
+					duration: 300
+				}).start();
+				Animated.timing(scaleAnimation, {
+					toValue: 1,
+					duration: 500
+				}).start();
+			} else {
+				Animated.timing(fadeAnimation, {
+					toValue: 0,
+					duration: 300
+				}).start();
+
+				Animated.timing(scaleAnimation, {
+					toValue: 0,
+					duration: 500
+				}).start();
+			}
+		},
+		[ addModifiersMode ]
+	);
+
 	return (
 		<React.Fragment>
 			<SafeAreaView>
 				<StyledView>
-					<Indicators>
-						<WeightIndicator weight={weight} />
-						<BMIIndicator bmi={bmi} />
-					</Indicators>
-					<DeathCounter death={death} lifespan={lifespan} />
-					<TimeIndicators>
-						<TimeIndicator time={timeWon} label="won" color="#7ED321" />
-						<TimeIndicator time={timeLost} label="lost" color="#D0021B" />
-					</TimeIndicators>
-					{addModifiersMode ? <AddModifiersList /> : <ModifiersFeed />}
+					<Animated.View
+						style={[
+							{
+								transform: [
+									{
+										translateY: scaleAnimation.interpolate({
+											inputRange: [ 0, 1 ],
+											outputRange: [ 0, -250 ]
+										})
+									}
+								]
+							}
+						]}
+					>
+						<Indicators>
+							<WeightIndicator weight={weight} />
+							<BMIIndicator bmi={bmi} />
+						</Indicators>
+						<DeathCounter death={death} lifespan={lifespan} />
+					</Animated.View>
+					<Animated.View
+						style={[
+							{
+								transform: [
+									{
+										translateY: scaleAnimation.interpolate({
+											inputRange: [ 0, 1 ],
+											outputRange: [ 0, -150 ]
+										})
+									}
+								]
+							}
+						]}
+					>
+						<TimeIndicators>
+							<TimeIndicator time={timeWon} label="won" color="#7ED321" />
+							<TimeIndicator time={timeLost} label="lost" color="#D0021B" />
+						</TimeIndicators>
+						{addModifiersMode ? <AddModifiersList /> : <ModifiersFeed userModifiers={lifespanModifiers} />}
+					</Animated.View>
 					<ReportButton
 						addModifiersMode={addModifiersMode}
 						onPressReportButton={() => setAddModifiersMode(!addModifiersMode)}
@@ -92,10 +161,11 @@ const mapStateToProps = (state) => {
 		weight: state.weight,
 		dob: state.dob,
 		bmi: state.bmi,
-		lifespan: state.geneticAgeAtDeath - state.negativeBMIInfluence,
+		lifespan: state.geneticAgeAtDeath - state.negativeBMIInfluence + state.timeWon - state.timeLost,
 		timeWon: state.timeWon,
 		timeLost: state.timeLost,
-		onboardingFinished: state.onboardingFinished
+		onboardingFinished: state.onboardingFinished,
+		lifespanModifiers: state.lifespanModifiers
 	};
 };
 

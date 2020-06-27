@@ -24,7 +24,7 @@ const Label = styled.Text`
 `;
 
 const AddModifierButton = styled.TouchableOpacity`
-	background-color: ${(props) => (props.isAdded ? '#8F8F8F' : props.isPositive ? '#7ED321' : '#D0021B')};
+	background-color: ${(props) => (props.isAdded ? '#c9c9c9' : props.isPositive ? '#7ED321' : '#D0021B')};
 	height: 40px;
 	min-width: 70px;
 	border-radius: 10px;
@@ -34,16 +34,24 @@ const AddModifierButton = styled.TouchableOpacity`
 	align-items: center;
 `;
 
-const AddModifierCell = ({ item, index }) => {
+const AddModifierCell = ({ item, index, addLifespanModifier }) => {
 	const [ isAdded, setAdded ] = useState(false);
 
 	const handlePress = () => {
 		setAdded(!isAdded);
+		const direction = item.type === '+' ? 'timeWon' : 'timeLost';
+		addLifespanModifier(direction, item.id, item.minutes);
+		setInterval(() => setAdded(false), 2000);
 	};
 	return (
-		<Cell key={index + item.text}>
+		<Cell key={'add' + index + item.text}>
 			<Header>{item.text}</Header>
-			<AddModifierButton isPositive={item.type === '+'} onPress={handlePress} isAdded={isAdded}>
+			<AddModifierButton
+				isPositive={item.type === '+'}
+				onPress={handlePress}
+				isAdded={isAdded}
+				disabled={isAdded}
+			>
 				<Label>{item.value}</Label>
 			</AddModifierButton>
 		</Cell>

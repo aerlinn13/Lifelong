@@ -34,6 +34,12 @@ function reducer(state = initialState, action) {
 					weight: action.newWeight
 				})
 			};
+		case actionTypes.ADD_LIFESPAN_MODIFIER:
+			return {
+				...state,
+				[action.direction]: state[action.direction] + action.minutes,
+				lifespanModifiers: [ ...state.lifespanModifiers, action.id ]
+			};
 		default:
 			return state;
 	}

@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import lifespanModifiers from '../../data/lifespanModifiers';
-import { updateWeight } from '../../state/actions';
+import { updateWeight, addLifespanModifier } from '../../state/actions';
 import fuzzySearch from '../../helpers/fuzzySearch';
 import AddModifierCell from './AddModifierCell';
 
@@ -62,14 +62,16 @@ const SearchInput = styled.TextInput`
 	height: 80px;
 `;
 
-const rowRenderer = (item, index) => {
+const EmptyCell = styled.View``;
+
+const rowRenderer = (item, index, addLifespanModifier) => {
 	if (item.type !== 'LAST') {
-		return <AddModifierCell item={item} index={index} />;
+		return <AddModifierCell item={item} index={index} addLifespanModifier={addLifespanModifier} />;
 	}
 	return <Span>{item.text}</Span>;
 };
 
-const AddModifiersList = ({ weight, updateWeight }) => {
+const AddModifiersList = ({ weight, updateWeight, addLifespanModifier }) => {
 	const [ filterText, setFilterText ] = useState('');
 	const [ filteredModifiers, setFilteredModifiers ] = useState(lifespanModifiers);
 
@@ -104,9 +106,10 @@ const AddModifiersList = ({ weight, updateWeight }) => {
 				ItemSeparatorComponent={() => <Separator />}
 				data={filteredModifiers}
 				style={{ flexGrow: 2 }}
-				renderItem={({ item, index }) => rowRenderer(item, index)}
+				renderItem={({ item, index }) => rowRenderer(item, index, addLifespanModifier)}
 				keyExtractor={(item) => item.text}
 				bounces={false}
+				ListEmptyComponent={<EmptyCell />}
 			/>
 		</Wrapper>
 	);
@@ -119,7 +122,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-	updateWeight: (newWeight) => dispatch(updateWeight(newWeight))
+	updateWeight: (newWeight) => dispatch(updateWeight(newWeight)),
+	addLifespanModifier: (direction, id, minutes) => dispatch(addLifespanModifier(direction, id, minutes))
 });
 
 const AddModifiersListContainer = connect(mapStateToProps, mapDispatchToProps)(AddModifiersList);

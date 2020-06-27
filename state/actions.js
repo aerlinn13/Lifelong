@@ -21,3 +21,10 @@ export const updateRelativeInfo = (relative, info, value) => ({
 	info,
 	value
 });
+
+export const addLifespanModifier = (direction, id, minutes) => ({
+	type: actionTypes.ADD_LIFESPAN_MODIFIER,
+	direction,
+	id,
+	minutes
+});
