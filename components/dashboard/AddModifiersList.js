@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import lifespanModifiers from '../../data/lifespanModifiers';
 import { updateWeight } from '../../state/actions';
 import fuzzySearch from '../../helpers/fuzzySearch';
+import AddModifierCell from './AddModifierCell';
 
 const Wrapper = styled.View`
 	display: flex;
@@ -21,45 +22,10 @@ const Separator = styled.View`
 	background-color: #f3f3f3;
 `;
 
-const Cell = styled.View`
-	height: 55px;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-`;
-
-const EmptyCell = styled(Cell)`
-justify-content: center;
-`;
-
-const Header = styled.Text`
-	color: black;
-	font-size: 20px;
-	font-family: KhulaRegular;
-	flex-grow: 2;
-`;
-
-const Label = styled.Text`
-	color: #8f8f8f;
-	font-size: 20px;
-	font-family: KhulaLight;
-`;
-
 const Span = styled.Text`
 	color: #8f8f8f;
 	font-size: 16px;
 	font-family: KhulaLight;
-`;
-
-const Sign = styled.View`
-	border-radius: 50px;
-	background-color: ${(props) => props.type};
-	width: 10px;
-	height: 10px;
-	margin-right: 8px;
-	margin-bottom: 5px;
 `;
 
 const WeightTweaker = styled.View`
@@ -98,19 +64,9 @@ const SearchInput = styled.TextInput`
 
 const rowRenderer = (item, index) => {
 	if (item.type !== 'LAST') {
-		return (
-			<Cell key={index + item.text}>
-				<Sign type={item.type === '+' ? '#7ED321' : '#D0021B'} />
-				<Header>{item.text}</Header>
-				<Label>{`${item.value}`}</Label>
-			</Cell>
-		);
+		return <AddModifierCell item={item} index={index} />;
 	}
-	return (
-		<Cell key={item.type}>
-			<Span>{item.text}</Span>
-		</Cell>
-	);
+	return <Span>{item.text}</Span>;
 };
 
 const AddModifiersList = ({ weight, updateWeight }) => {
@@ -151,11 +107,6 @@ const AddModifiersList = ({ weight, updateWeight }) => {
 				renderItem={({ item, index }) => rowRenderer(item, index)}
 				keyExtractor={(item) => item.text}
 				bounces={false}
-				ListEmptyComponent={
-					<EmptyCell>
-						<Span>Tap orange button to add lifespan modifiers</Span>
-					</EmptyCell>
-				}
 			/>
 		</Wrapper>
 	);
