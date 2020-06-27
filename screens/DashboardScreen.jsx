@@ -73,28 +73,18 @@ const DashboardScreen = ({
 		setTimeout(() => setMaskDisabled(true), 1000);
 	}
 
-	const fadeAnimation = useRef(new Animated.Value(0)).current;
-	const scaleAnimation = useRef(new Animated.Value(100)).current;
+	const animation = useRef(new Animated.Value(0)).current;
 	React.useEffect(
 		() => {
 			if (addModifiersMode) {
-				Animated.timing(fadeAnimation, {
+				Animated.timing(animation, {
 					toValue: 1,
 					duration: 300
-				}).start();
-				Animated.timing(scaleAnimation, {
-					toValue: 1,
-					duration: 500
 				}).start();
 			} else {
-				Animated.timing(fadeAnimation, {
+				Animated.timing(animation, {
 					toValue: 0,
 					duration: 300
-				}).start();
-
-				Animated.timing(scaleAnimation, {
-					toValue: 0,
-					duration: 500
 				}).start();
 			}
 		},
@@ -110,9 +100,9 @@ const DashboardScreen = ({
 							{
 								transform: [
 									{
-										translateY: scaleAnimation.interpolate({
+										translateY: animation.interpolate({
 											inputRange: [ 0, 1 ],
-											outputRange: [ 0, -250 ]
+											outputRange: [ 0, -500 ]
 										})
 									}
 								]
@@ -130,9 +120,9 @@ const DashboardScreen = ({
 							{
 								transform: [
 									{
-										translateY: scaleAnimation.interpolate({
+										translateY: animation.interpolate({
 											inputRange: [ 0, 1 ],
-											outputRange: [ 0, -150 ]
+											outputRange: [ 0, -180 ]
 										})
 									}
 								]

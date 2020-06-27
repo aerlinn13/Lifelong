@@ -4,7 +4,7 @@ import timeCalculator from '../../calculators/timeCalculator';
 
 const Wrapper = styled.View`
 	width: 47%;
-	height: 70px;
+	height: 60px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

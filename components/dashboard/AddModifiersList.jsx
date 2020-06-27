@@ -33,7 +33,7 @@ const WeightTweaker = styled.View`
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
-	height: 80px;
+	height: 60px;
 `;
 
 const WeightButton = styled.TouchableOpacity`
@@ -59,7 +59,7 @@ const SearchInput = styled.TextInput`
 	font-size: 20px;
 	font-family: KhulaLight;
 	color: #8f8f8f;
-	height: 80px;
+	height: 60px;
 `;
 
 const EmptyCell = styled.View``;
