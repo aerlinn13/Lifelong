@@ -23,13 +23,16 @@ function reducer(state = initialState, action) {
 				...state,
 				[action.relative]: action.info
 			};
-		case actionTypes.SAVE_DAILY_REPORT:
+		case actionTypes.UPDATE_WEIGHT:
 			return {
 				...state,
-				reports: {
-					...state.reports,
-					[action.date]: action.report
-				}
+				weight: action.newWeight,
+				bmi: bmiRate({ weight: action.newWeight, height: state.height }),
+				negativeBMIInfluence: negativeBMICalculator({
+					gender: state.gender,
+					height: state.height,
+					weight: action.newWeight
+				})
 			};
 		default:
 			return state;

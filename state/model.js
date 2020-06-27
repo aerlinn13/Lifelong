@@ -1,5 +1,4 @@
 const initialState = {
-	reports: [],
 	name: '',
 	dob: '',
 	gender: '',
@@ -9,6 +8,7 @@ const initialState = {
 	timeLost: 0,
 	weight: 0,
 	height: 0,
+	bmi: 0,
 	onboardingFinished: false,
 	mother: {},
 	maternalGrandmother: {},

@@ -9,7 +9,8 @@ import {
 	BMIIndicator,
 	TimeIndicator,
 	ModifiersFeed,
-	ReportButton
+	ReportButton,
+	AddModifiersList
 } from '../components/dashboard';
 
 const StyledView = styled.View`
@@ -60,6 +61,7 @@ const DashboardScreen = ({ navigation, weight, dob, bmi, lifespan, timeWon, time
 	if (!maskDisabled) {
 		setTimeout(() => setMaskDisabled(true), 1000);
 	}
+
 	return (
 		<React.Fragment>
 			<SafeAreaView>
@@ -73,7 +75,7 @@ const DashboardScreen = ({ navigation, weight, dob, bmi, lifespan, timeWon, time
 						<TimeIndicator time={timeWon} label="won" color="#7ED321" />
 						<TimeIndicator time={timeLost} label="lost" color="#D0021B" />
 					</TimeIndicators>
-					<ModifiersFeed />
+					{addModifiersMode ? <AddModifiersList /> : <ModifiersFeed />}
 					<ReportButton
 						addModifiersMode={addModifiersMode}
 						onPressReportButton={() => setAddModifiersMode(!addModifiersMode)}
@@ -97,8 +99,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({});
-
-const DashboardScreenContainer = connect(mapStateToProps, mapDispatchToProps)(DashboardScreen);
+const DashboardScreenContainer = connect(mapStateToProps)(DashboardScreen);
 
 export default DashboardScreenContainer;

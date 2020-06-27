@@ -27,6 +27,7 @@ const getColor = (bmi) => {
 	if (bmi > 25 || bmi < 18) {
 		return '#D0021B';
 	}
+	return '#7ED321';
 };
 
 const BMIIndicator = ({ bmi }) => {

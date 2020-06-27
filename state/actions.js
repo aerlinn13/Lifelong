@@ -4,6 +4,11 @@ export const finishOnboarding = () => ({
 	type: actionTypes.FINISH_ONBOARDING
 });
 
+export const updateWeight = (newWeight) => ({
+	type: actionTypes.UPDATE_WEIGHT,
+	newWeight
+});
+
 export const updatePersonalInfo = (info, value) => ({
 	type: actionTypes.UPDATE_PERSONAL_INFO,
 	info,

@@ -77,6 +77,7 @@ const rowRenderer = (item, index) => {
 };
 
 const getData = () => {
+	return [];
 	let reducedModifiers = lifespanModifiers;
 	if (reducedModifiers.length > 20) {
 		reducedModifiers.length = 20;
