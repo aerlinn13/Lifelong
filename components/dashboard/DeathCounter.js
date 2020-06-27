@@ -27,7 +27,7 @@ const MiniLabel = styled(Label)`
     font-family: KhulaRegular;
     position: relative;
     bottom: -65px;
-    margin: 0px 15px;
+    margin: 0px 10px;
 `;
 
 const MiniLabels = styled.View`

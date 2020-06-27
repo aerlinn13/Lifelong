@@ -1,8 +1,8 @@
 const texts = {
 	intro: [
 		'It is interesting to know how much time one has left to live.',
-		'We will ask you some questions about you and your parents to estimate your potential lifespan.',
-		'Every day you are able to report how healthy your lifestyle habits are.  Daily report changes your potential lifespan. If you miss a day, it will be presumed that all healthy habits were failed that day, and your potential lifespan will decrease. Once submitted, reports cannot be changed.',
+		'With Lifelong, you are able to create your own avatar, your alter ego, second self.',
+		'Every day you can add lifespan modifiers, events that change lifespan of your avatar.',
 		'Our future in our hands and we are able to win another day of sun.'
 	],
 	stepOne: '',

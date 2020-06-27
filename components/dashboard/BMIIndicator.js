@@ -29,11 +29,16 @@ const getColor = (bmi) => {
 	}
 };
 
-const BMIIndicator = ({ bmi }) => (
-	<Wrapper>
-		<ColouredText bmi={bmi}>{bmi.toFixed(3)}</ColouredText>
-		<Text>{`BMI`}</Text>
-	</Wrapper>
-);
+const BMIIndicator = ({ bmi }) => {
+	if (!bmi) {
+		return null;
+	}
+	return (
+		<Wrapper>
+			<ColouredText bmi={bmi}>{bmi.toFixed(3)}</ColouredText>
+			<Text>{`BMI`}</Text>
+		</Wrapper>
+	);
+};
 
 export default BMIIndicator;

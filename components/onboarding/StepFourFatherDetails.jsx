@@ -46,7 +46,7 @@ const StepFourFatherDetails = ({ step, setStep, updateRelativeInfo }) => {
 
 	return (
 		<React.Fragment>
-			<OnboardingHeader>{`About your father (${internalStep + 1} out of 3)`}</OnboardingHeader>
+			<OnboardingHeader>{`About father (${internalStep + 1} out of 3)`}</OnboardingHeader>
 			{renderStep()}
 			<ConfirmButton onPress={handlePress} label="Confirm" />
 		</React.Fragment>

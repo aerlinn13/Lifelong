@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -46,9 +46,16 @@ const TimeIndicators = styled.View`
 	padding: 0px 20px;
 `;
 
-const DashboardScreen = ({ weight, dob, bmi, lifespan, timeWon, timeLost }) => {
+const DashboardScreen = ({ navigation, weight, dob, bmi, lifespan, timeWon, timeLost, onboardingFinished }) => {
+	useEffect(() => {
+		if (!onboardingFinished) {
+			navigation.replace('Onboarding');
+		}
+	}, []);
+
 	const death = moment(dob, 'dd.mm.yyyy').add(lifespan, 'minutes');
 	const [ maskDisabled, setMaskDisabled ] = useState(false);
+	const [ addModifiersMode, setAddModifiersMode ] = useState(false);
 
 	if (!maskDisabled) {
 		setTimeout(() => setMaskDisabled(true), 1000);
@@ -67,7 +74,10 @@ const DashboardScreen = ({ weight, dob, bmi, lifespan, timeWon, timeLost }) => {
 						<TimeIndicator time={timeLost} label="lost" color="#D0021B" />
 					</TimeIndicators>
 					<ModifiersFeed />
-					<ReportButton />
+					<ReportButton
+						addModifiersMode={addModifiersMode}
+						onPressReportButton={() => setAddModifiersMode(!addModifiersMode)}
+					/>
 				</StyledView>
 			</SafeAreaView>
 			<Mask disabled={maskDisabled} />
@@ -82,7 +92,8 @@ const mapStateToProps = (state) => {
 		bmi: state.bmi,
 		lifespan: state.geneticAgeAtDeath - state.negativeBMIInfluence,
 		timeWon: state.timeWon,
-		timeLost: state.timeLost
+		timeLost: state.timeLost,
+		onboardingFinished: state.onboardingFinished
 	};
 };
 

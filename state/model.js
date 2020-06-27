@@ -1,7 +1,6 @@
 const initialState = {
 	reports: [],
-	firstName: '',
-	lastName: '',
+	name: '',
 	dob: '',
 	gender: '',
 	geneticAgeAtDeath: 0,
@@ -17,7 +16,7 @@ const initialState = {
 	father: {},
 	paternalGrandmother: {},
 	paternalGrandfather: {},
-	strikes: {}
+	lifespanModifiers: []
 };
 
 export default initialState;

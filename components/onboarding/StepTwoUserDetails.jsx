@@ -21,13 +21,22 @@ const StepTwoUserDetails = ({ step, setStep, updatePersonalInfo }) => {
 				return (
 					<Textfield
 						key={`textfield-${step}-${internalStep}`}
+						label={'Nickname'}
+						role={'name'}
+						onChange={(text) => updatePersonalInfo('name', text)}
+					/>
+				);
+			case 1:
+				return (
+					<Textfield
+						key={`textfield-${step}-${internalStep}`}
 						label={'Weight, kg'}
 						role={'weight'}
 						type="numeric"
 						onChange={(text) => updatePersonalInfo('weight', text)}
 					/>
 				);
-			case 1:
+			case 2:
 				return (
 					<Textfield
 						key={`textfield-${step}-${internalStep}`}
@@ -37,7 +46,7 @@ const StepTwoUserDetails = ({ step, setStep, updatePersonalInfo }) => {
 						onChange={(text) => updatePersonalInfo('height', text)}
 					/>
 				);
-			case 2:
+			case 3:
 				return (
 					<Textfield
 						key={`textfield-${step}-${internalStep}`}
@@ -46,7 +55,7 @@ const StepTwoUserDetails = ({ step, setStep, updatePersonalInfo }) => {
 						onChange={(text) => updatePersonalInfo('dob', text)}
 					/>
 				);
-			case 3:
+			case 4:
 				return (
 					<Radio
 						key={`radio-${step}-${internalStep}`}
@@ -60,7 +69,7 @@ const StepTwoUserDetails = ({ step, setStep, updatePersonalInfo }) => {
 	};
 
 	const handlePress = () => {
-		if (internalStep === 3) {
+		if (internalStep === 4) {
 			setStep(step + 1);
 		} else {
 			setInternalStep(internalStep + 1);
@@ -69,7 +78,7 @@ const StepTwoUserDetails = ({ step, setStep, updatePersonalInfo }) => {
 
 	return (
 		<React.Fragment>
-			<OnboardingHeader>{`About you (${internalStep + 1} out of 4)`}</OnboardingHeader>
+			<OnboardingHeader>{`About your avatar (${internalStep + 1} out of 4)`}</OnboardingHeader>
 			{renderStep()}
 			<ConfirmButton onPress={handlePress} label="Confirm" />
 		</React.Fragment>
