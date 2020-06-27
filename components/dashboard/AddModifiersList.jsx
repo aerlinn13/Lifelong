@@ -74,7 +74,7 @@ const rowRenderer = (item, index, addLifespanModifier) => {
 
 const AddModifiersList = ({ weight, updateWeight, addLifespanModifier }) => {
 	const [ filterText, setFilterText ] = useState('');
-	const [ filteredModifiers, setFilteredModifiers ] = useState(lifespanModifiers);
+	const [ filteredModifiers, setFilteredModifiers ] = useState(fuzzySearch('', lifespanModifiers));
 
 	const handlePress = (changeValue) => {
 		const newValue = (parseFloat(weight) + changeValue).toFixed(1);

@@ -12,14 +12,14 @@ const Cell = styled.View`
 
 const Header = styled.Text`
 	color: black;
-	font-size: 20px;
+	font-size: 16px;
 	font-family: KhulaRegular;
 	flex-grow: 2;
 `;
 
 const Label = styled.Text`
 	color: white;
-	font-size: 20px;
+	font-size: 16px;
 	font-family: KhulaRegular;
 `;
 

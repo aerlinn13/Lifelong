@@ -4,14 +4,13 @@ import moment from 'moment';
 
 const Wrapper = styled.View`
 	height: 120px;
-	width: 90%;
 	background-color: black;
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: 5%;
+	margin: 15px 20px;
 `;
 
 const Label = styled.Text`
@@ -23,10 +22,10 @@ const Label = styled.Text`
 `;
 
 const MiniLabel = styled(Label)`
-    font-size: 16px;
+    font-size: 14px;
     font-family: KhulaRegular;
     position: relative;
-    bottom: -65px;
+    bottom: -45px;
     margin: 0px 10px;
 `;
 

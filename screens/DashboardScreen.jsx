@@ -102,17 +102,45 @@ const DashboardScreen = ({
 		<React.Fragment>
 			<SafeAreaView>
 				<StyledView>
-					<Indicators>
-						<WeightIndicator weight={weight} />
-						<BMIIndicator bmi={bmi} />
-					</Indicators>
-					<DeathCounter death={death} lifespan={lifespan} />
-
-					<TimeIndicators>
-						<TimeIndicator time={timeWon} label="won" color="#7ED321" />
-						<TimeIndicator time={timeLost} label="lost" color="#D0021B" />
-					</TimeIndicators>
-
+					<Animated.View
+						style={[
+							{
+								transform: [
+									{
+										translateY: animation.interpolate({
+											inputRange: [ 0, 1 ],
+											outputRange: [ 0, -500 ]
+										})
+									}
+								]
+							}
+						]}
+					>
+						<Indicators>
+							<WeightIndicator weight={weight} />
+							<BMIIndicator bmi={bmi} />
+						</Indicators>
+						<DeathCounter death={death} lifespan={lifespan} />
+					</Animated.View>
+					<Animated.View
+						style={[
+							{
+								transform: [
+									{
+										translateY: animation.interpolate({
+											inputRange: [ 0, 1 ],
+											outputRange: [ 0, -170 ]
+										})
+									}
+								]
+							}
+						]}
+					>
+						<TimeIndicators>
+							<TimeIndicator time={timeWon} label="won" color="#7ED321" />
+							<TimeIndicator time={timeLost} label="lost" color="#D0021B" />
+						</TimeIndicators>
+					</Animated.View>
 					<Animated.View
 						style={[
 							{
@@ -120,7 +148,13 @@ const DashboardScreen = ({
 									{
 										translateX: animation.interpolate({
 											inputRange: [ 0, 1 ],
-											outputRange: [ 0, -410 ]
+											outputRange: [ 0, -Dimensions.get('window').width ]
+										})
+									},
+									{
+										translateY: animation.interpolate({
+											inputRange: [ 0, 1 ],
+											outputRange: [ 0, -170 ]
 										})
 									}
 								]

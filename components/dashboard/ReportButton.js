@@ -11,9 +11,8 @@ const Wrapper = styled.TouchableOpacity`
 	border-radius: 5px;
 	background-color: ${(props) => (props.addModifiersMode ? 'black' : '#fda857')};
 	position: absolute;
-	bottom: 30px;
-	right: 30px;
-	z-index: 20;
+	bottom: 20px;
+	right: 20px;
 `;
 
 const Text = styled.Text`

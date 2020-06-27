@@ -7,11 +7,11 @@ const Wrapper = styled.View`
 	display: flex;
 	width: ${(props) => `${Dimensions.get('window').width - 40}px`};
 	flex-direction: column;
-	flex-grow: 2;
 	border-radius: 10px;
 	margin: 20px;
 	padding: 0px 15px;
 	background-color: white;
+	min-height: 180px;
 `;
 
 const Separator = styled.View`
@@ -34,14 +34,14 @@ const EmptyCell = styled(Cell)`
 
 const Header = styled.Text`
 	color: black;
-	font-size: 20px;
+	font-size: 16px;
 	font-family: KhulaRegular;
 	flex-grow: 2;
 `;
 
 const Label = styled.Text`
 	color: #8f8f8f;
-	font-size: 20px;
+	font-size: 16px;
 	font-family: KhulaLight;
 `;
 
@@ -79,11 +79,14 @@ const rowRenderer = (item, index) => {
 
 const getData = (userModifiers) => {
 	const modifiers = userModifiers.map((id) => lifespanModifiers[id]);
+	if (!modifiers.length) {
+		return [];
+	}
 
 	if (modifiers.length > 5) {
 		modifiers.length = 5;
-		return [ ...modifiers, { type: 'LAST', text: 'Showing last 5 records' } ];
 	}
+
 	return [ ...modifiers, { type: 'LAST', text: `Showing last ${modifiers.length} records` } ];
 };
 
@@ -93,7 +96,6 @@ const ModifiersFeed = ({ userModifiers }) => {
 			<FlatList
 				ItemSeparatorComponent={() => <Separator />}
 				data={getData(userModifiers)}
-				style={{ flexGrow: 2 }}
 				renderItem={({ item, index }) => rowRenderer(item, index)}
 				keyExtractor={(item, index) => item.text + index}
 				bounces={false}
