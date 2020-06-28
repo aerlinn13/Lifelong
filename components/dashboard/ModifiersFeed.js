@@ -78,7 +78,7 @@ const rowRenderer = (item, index) => {
 };
 
 const getData = (userModifiers) => {
-	const modifiers = userModifiers.map((id) => lifespanModifiers[id]);
+	const modifiers = userModifiers.map((id) => lifespanModifiers[id]).reverse();
 	if (!modifiers.length) {
 		return [];
 	}

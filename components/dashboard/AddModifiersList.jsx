@@ -102,6 +102,7 @@ const AddModifiersList = ({ weight, updateWeight, addLifespanModifier }) => {
 				placeholder={`Try 'no red meat today'`}
 				value={filterText}
 				onChangeText={handleSearchInputChange}
+				returnKeyType="done"
 			/>
 			<FlatList
 				ItemSeparatorComponent={() => <Separator />}
