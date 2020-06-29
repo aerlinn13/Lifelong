@@ -4,6 +4,10 @@ export const finishOnboarding = () => ({
 	type: actionTypes.FINISH_ONBOARDING
 });
 
+export const respawnOnboarding = () => ({
+	type: actionTypes.RESPAWN_ONBOARDING
+});
+
 export const updateWeight = (newWeight) => ({
 	type: actionTypes.UPDATE_WEIGHT,
 	newWeight

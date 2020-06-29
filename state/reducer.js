@@ -13,6 +13,11 @@ function reducer(state = initialState, action) {
 				negativeBMIInfluence: negativeBMICalculator(state),
 				bmi: bmiRate(state)
 			};
+		case actionTypes.RESPAWN_ONBOARDING:
+			return {
+				...state,
+				onboardingFinished: false
+			};
 		case actionTypes.UPDATE_PERSONAL_INFO:
 			return {
 				...state,

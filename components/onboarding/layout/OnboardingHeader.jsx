@@ -5,7 +5,7 @@ const Header = styled.Text`
 	text-align: left;
 	font-size: 22px;
 	font-family: KhulaLight;
-	padding: 20px 20px 10px 20px;
+	padding: 22px 20px 10px 50px;
 `;
 
 const OnboardingHeader = ({ children }) => <Header>{children}</Header>;

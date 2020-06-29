@@ -14,10 +14,8 @@ import { StatusBar } from 'expo-status-bar';
 
 import { PersistGate } from 'redux-persist/integration/react';
 
-import DailyReportScreen from './screens/DailyReportScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import OnboardingScreen from './screens/OnboardingScreen';
-import LoadingScreen from './screens/LoadingScreen';
 
 import initialState from './state/model';
 import reducer from './state/reducer';
@@ -71,10 +69,8 @@ export default function App() {
 								cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
 							}}
 						>
-							<Stack.Screen name="Loading" component={LoadingScreen} />
 							<Stack.Screen name="Dashboard" component={DashboardScreen} />
 							<Stack.Screen name="Onboarding" component={OnboardingScreen} />
-							<Stack.Screen name="DailyReport" component={DailyReportScreen} />
 						</Stack.Navigator>
 						<StatusBar style="dark" />
 					</NavigationContainer>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, KeyboardAvoidingView } from 'react-native';
+import { ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux';
 import { finishOnboarding, updatePersonalInfo, updateRelativeInfo } from '../state/actions';

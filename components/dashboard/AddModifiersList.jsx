@@ -3,7 +3,7 @@ import { FlatList, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import lifespanModifiers from '../../data/lifespanModifiers';
-import { updateWeight, addLifespanModifier } from '../../state/actions';
+import { updateWeight, addLifespanModifier, respawnOnboarding } from '../../state/actions';
 import fuzzySearch from '../../helpers/fuzzySearch';
 import AddModifierCell from './AddModifierCell';
 
@@ -72,7 +72,7 @@ const rowRenderer = (item, index, addLifespanModifier) => {
 	return <Span>{item.text}</Span>;
 };
 
-const AddModifiersList = ({ weight, updateWeight, addLifespanModifier }) => {
+const AddModifiersList = ({ weight, updateWeight, addLifespanModifier, respawnOnboarding }) => {
 	const [ filterText, setFilterText ] = useState('');
 	const [ filteredModifiers, setFilteredModifiers ] = useState(fuzzySearch('', lifespanModifiers));
 
@@ -82,6 +82,10 @@ const AddModifiersList = ({ weight, updateWeight, addLifespanModifier }) => {
 	};
 
 	const handleSearchInputChange = (text) => {
+		if (text === 'respawn') {
+			respawnOnboarding();
+			return;
+		}
 		setFilterText(text);
 		setFilteredModifiers(fuzzySearch(text, lifespanModifiers));
 	};
@@ -125,7 +129,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
 	updateWeight: (newWeight) => dispatch(updateWeight(newWeight)),
-	addLifespanModifier: (direction, id, minutes) => dispatch(addLifespanModifier(direction, id, minutes))
+	addLifespanModifier: (direction, id, minutes) => dispatch(addLifespanModifier(direction, id, minutes)),
+	respawnOnboarding: () => dispatch(respawnOnboarding())
 });
 
 const AddModifiersListContainer = connect(mapStateToProps, mapDispatchToProps)(AddModifiersList);

@@ -2,7 +2,6 @@ const texts = {
 	intro: [
 		'It is interesting to know how much time one has left to live.',
 		'With Lifelong, you are able to create your own avatar, your alter ego, second self.',
-		'Every day you can add lifespan modifiers, events that change lifespan of your avatar.',
 		'Our future in our hands and we are able to win another day of sun.'
 	],
 	stepOne: '',

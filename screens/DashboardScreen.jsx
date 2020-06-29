@@ -66,11 +66,14 @@ const DashboardScreen = ({
 	onboardingFinished,
 	lifespanModifiers
 }) => {
-	useEffect(() => {
-		if (!onboardingFinished) {
-			navigation.replace('Onboarding');
-		}
-	}, []);
+	useEffect(
+		() => {
+			if (!onboardingFinished) {
+				navigation.replace('Onboarding');
+			}
+		},
+		[ onboardingFinished ]
+	);
 
 	const death = moment(dob, 'dd.mm.yyyy').add(lifespan, 'minutes');
 	const [ maskDisabled, setMaskDisabled ] = useState(false);
