@@ -29,7 +29,7 @@ const Mask = styled.View`
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: white;
+	background-color: #f3f3f3;
 	display: ${(props) => (props.disabled ? 'none' : 'flex')};
 `;
 
@@ -77,7 +77,7 @@ const DashboardScreen = ({
 	const [ addModifiersMode, setAddModifiersMode ] = useState(false);
 
 	if (!maskDisabled) {
-		setTimeout(() => setMaskDisabled(true), 1000);
+		setTimeout(() => setMaskDisabled(true), 300);
 	}
 
 	const animation = useRef(new Animated.Value(0)).current;
