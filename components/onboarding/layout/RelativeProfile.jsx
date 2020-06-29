@@ -55,8 +55,9 @@ const RelativeProfile = ({ label, placeholder, relative, updateRelativeInfo }) =
 		<Container>
 			<Label>{label}</Label>
 			<TextInput
+				autoFocus
 				placeholder={placeholder}
-				keyboardType="numeric"
+				keyboardType="number-pad"
 				returnKeyType="done"
 				onChangeText={(text) => updateRelativeInfo(relative, 'age', text)}
 			/>

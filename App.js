@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
+import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -66,11 +66,24 @@ export default function App() {
 							initialRouteName="Dashboard"
 							screenOptions={{
 								headerShown: false,
-								cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+								cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+								transitionSpec: {
+									open: { animation: 'timing', config: { duration: 0 } },
+									close: { animation: 'timing', config: { duration: 0 } }
+								}
 							}}
 						>
 							<Stack.Screen name="Dashboard" component={DashboardScreen} />
-							<Stack.Screen name="Onboarding" component={OnboardingScreen} />
+							<Stack.Screen
+								name="Onboarding"
+								component={OnboardingScreen}
+								options={{
+									transitionSpec: {
+										open: { animation: 'timing', config: { duration: 0 } },
+										close: TransitionPresets.ModalTransition
+									}
+								}}
+							/>
 						</Stack.Navigator>
 						<StatusBar style="dark" />
 					</NavigationContainer>

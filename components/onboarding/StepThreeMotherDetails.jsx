@@ -3,6 +3,14 @@ import { OnboardingHeader, RelativeProfile, ConfirmButton } from './layout';
 
 const StepThreeMotherDetails = ({ step, setStep, updateRelativeInfo }) => {
 	const [ internalStep, setInternalStep ] = useState(0);
+	const [ validation, setValidation ] = useState(Array(3).fill(''));
+
+	const handleChange = (relative, field, text) => {
+		updateRelativeInfo(relative, field, text);
+		const newValidation = [ ...validation ];
+		newValidation[internalStep] = text;
+		setValidation(newValidation);
+	};
 
 	const renderStep = () => {
 		switch (internalStep) {
@@ -12,7 +20,7 @@ const StepThreeMotherDetails = ({ step, setStep, updateRelativeInfo }) => {
 						key={`relative-${step}-${internalStep}`}
 						label="Her age"
 						relative="mother"
-						updateRelativeInfo={updateRelativeInfo}
+						updateRelativeInfo={handleChange}
 					/>
 				);
 			case 1:
@@ -21,7 +29,7 @@ const StepThreeMotherDetails = ({ step, setStep, updateRelativeInfo }) => {
 						key={`relative-${step}-${internalStep}`}
 						relative="maternalGrandfather"
 						label="Her father's age"
-						updateRelativeInfo={updateRelativeInfo}
+						updateRelativeInfo={handleChange}
 					/>
 				);
 			case 2:
@@ -30,7 +38,7 @@ const StepThreeMotherDetails = ({ step, setStep, updateRelativeInfo }) => {
 						key={`relative-${step}-${internalStep}`}
 						relative="maternalGrandmother"
 						label="Her mother's age"
-						updateRelativeInfo={updateRelativeInfo}
+						updateRelativeInfo={handleChange}
 					/>
 				);
 		}
@@ -48,7 +56,7 @@ const StepThreeMotherDetails = ({ step, setStep, updateRelativeInfo }) => {
 		<React.Fragment>
 			<OnboardingHeader>{`About mother (${internalStep + 1} out of 3)`}</OnboardingHeader>
 			{renderStep()}
-			<ConfirmButton onPress={handlePress} label="Confirm" />
+			<ConfirmButton onPress={handlePress} label="Confirm" disabled={!validation[internalStep]} />
 		</React.Fragment>
 	);
 };

@@ -82,7 +82,7 @@ const AddModifiersList = ({ weight, updateWeight, addLifespanModifier, respawnOn
 	};
 
 	const handleSearchInputChange = (text) => {
-		if (text === 'respawn') {
+		if (text.toLowerCase() === 'respawn') {
 			respawnOnboarding();
 			return;
 		}

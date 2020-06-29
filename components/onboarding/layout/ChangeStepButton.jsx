@@ -13,9 +13,8 @@ const Wrapper = styled.View`
 const Button = styled.TouchableOpacity`
 	background-color: #779ecb;
 	color: white;
-	width: 200px;
 	height: 40px;
-	width: 100px;
+	width: 120px;
 	text-align: center;
 	display: flex;
 	flex-direction: column;

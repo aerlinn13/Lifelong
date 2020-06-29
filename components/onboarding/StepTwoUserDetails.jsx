@@ -14,6 +14,14 @@ const options = [
 
 const StepTwoUserDetails = ({ step, setStep, updatePersonalInfo }) => {
 	const [ internalStep, setInternalStep ] = useState(0);
+	const [ validation, setValidation ] = useState(Array(4).fill(''));
+
+	const handleChange = (field, text) => {
+		updatePersonalInfo(field, text);
+		const newValidation = [ ...validation ];
+		newValidation[internalStep] = text;
+		setValidation(newValidation);
+	};
 
 	const renderStep = () => {
 		switch (internalStep) {
@@ -23,8 +31,8 @@ const StepTwoUserDetails = ({ step, setStep, updatePersonalInfo }) => {
 						key={`textfield-${step}-${internalStep}`}
 						label={'Weight, kg'}
 						role={'weight'}
-						type="numeric"
-						onChange={(text) => updatePersonalInfo('weight', text)}
+						type="number-pad"
+						onChange={(text) => handleChange('weight', text)}
 					/>
 				);
 			case 1:
@@ -33,17 +41,19 @@ const StepTwoUserDetails = ({ step, setStep, updatePersonalInfo }) => {
 						key={`textfield-${step}-${internalStep}`}
 						label={'Height, cm'}
 						role={'height'}
-						type="numeric"
-						onChange={(text) => updatePersonalInfo('height', text)}
+						type="number-pad"
+						onChange={(text) => handleChange('height', text)}
 					/>
 				);
 			case 2:
 				return (
 					<Textfield
 						key={`textfield-${step}-${internalStep}`}
-						label={'Date of birth, dd.mm.yyyy'}
+						label={'Date of birth (DD.MM.YYYY)'}
 						role={'dob'}
-						onChange={(text) => updatePersonalInfo('dob', text)}
+						type="default"
+						value={validation[internalStep]}
+						onChange={(text) => handleChange('dob', text)}
 					/>
 				);
 			case 3:
@@ -53,7 +63,7 @@ const StepTwoUserDetails = ({ step, setStep, updatePersonalInfo }) => {
 						options={options}
 						label="Gender"
 						role="gender"
-						onPress={(selection) => updatePersonalInfo('gender', selection)}
+						onPress={(selection) => handleChange('gender', selection)}
 					/>
 				);
 		}
@@ -71,7 +81,7 @@ const StepTwoUserDetails = ({ step, setStep, updatePersonalInfo }) => {
 		<React.Fragment>
 			<OnboardingHeader>{`About your avatar (${internalStep + 1} out of 4)`}</OnboardingHeader>
 			{renderStep()}
-			<ConfirmButton onPress={handlePress} label="Confirm" />
+			<ConfirmButton onPress={handlePress} label="Confirm" disabled={!validation[internalStep].length} />
 		</React.Fragment>
 	);
 };

@@ -10,9 +10,7 @@ const texts = {
 	stepFour: '',
 	stepFive: [
 		'At Lifelong our goal is to extend human lifespan with healthy lifestyle. We don’t believe in temporary goals like to lose 5 kilograms by the summer. Our goals are daily.',
-		'We also don’t believe in counting calories, because peoples bodies burn calories differently and this daily counting is boring and increases stress.',
-		'We believe that rules are simple. Never overeat, feel light hunger after meal, don’t drink too much coffee.',
-		'You will be able to create your own goals when we enable premium  subscription for our app. Until then. everyone could use predefined set of goals.'
+		'We also don’t believe in counting calories, because peoples bodies burn calories differently and this daily counting is boring and increases stress.'
 	]
 };
 
