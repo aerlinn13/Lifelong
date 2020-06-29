@@ -10,7 +10,7 @@ const Container = styled.View`
 
 const TextInput = styled.TextInput`
 	font-family: KhulaRegular;
-	font-size: 20px;
+	font-size: 40px;
 	padding: 10px 30px 10px 30px;
 	text-align: center;
 	border-style: solid;
