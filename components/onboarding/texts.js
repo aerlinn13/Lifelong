@@ -1,6 +1,6 @@
 const texts = {
 	intro: [
-		'It is interesting to know how much time one has left to live.',
+		'It is all about time.',
 		'With Lifelong, you are able to create your own avatar, your alter ego, second self.',
 		'Our future in our hands and we are able to win another day of sun.'
 	],
