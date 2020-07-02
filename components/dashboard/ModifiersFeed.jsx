@@ -11,7 +11,7 @@ const Wrapper = styled.View`
 	margin: 20px;
 	padding: 0px 15px;
 	background-color: white;
-	min-height: 180px;
+	max-height: 335px;
 `;
 
 const Separator = styled.View`
@@ -78,11 +78,10 @@ const rowRenderer = (item, index) => {
 };
 
 const getData = (userModifiers) => {
-	const modifiers = userModifiers.map((id) => lifespanModifiers[id]).reverse();
+	const modifiers = [ ...userModifiers.map((id) => lifespanModifiers[id]) ].reverse();
 	if (!modifiers.length) {
 		return [];
 	}
-
 	if (modifiers.length > 5) {
 		modifiers.length = 5;
 	}

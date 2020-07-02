@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FlatList, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
@@ -72,7 +72,7 @@ const rowRenderer = (item, index, addLifespanModifier) => {
 	return <Span>{item.text}</Span>;
 };
 
-const AddModifiersList = ({ weight, updateWeight, addLifespanModifier, respawnOnboarding }) => {
+const AddModifiersList = ({ weight, updateWeight, addLifespanModifier, respawnOnboarding, addModifiersMode }) => {
 	const [ filterText, setFilterText ] = useState('');
 	const [ filteredModifiers, setFilteredModifiers ] = useState(fuzzySearch('', lifespanModifiers));
 
