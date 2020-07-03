@@ -288,6 +288,13 @@ const lifespanModifiers = [
 		value: '3d',
 		minutes: 4320,
 		type: NEGATIVE
+	},
+	{
+		id: 41,
+		text: 'No red meat today',
+		value: '12h',
+		minutes: 720,
+		type: POSITIVE
 	}
 ];
 
