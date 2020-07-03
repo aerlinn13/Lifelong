@@ -94,7 +94,7 @@ const AddModifiersList = ({
 			return;
 		}
 
-		if (text.toLowerCase() === 'purge') {
+		if (text.toLowerCase() === 'purge all data') {
 			removeAllUserModifiers();
 			setFilterText('');
 			setAddModifiersMode(false);
