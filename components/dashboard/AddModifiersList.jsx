@@ -81,7 +81,7 @@ const AddModifiersList = ({
 	setAddModifiersMode
 }) => {
 	const [ filterText, setFilterText ] = useState('');
-	const [ filteredModifiers, setFilteredModifiers ] = useState(fuzzySearch('', lifespanModifiers));
+	const [ filteredModifiers, setFilteredModifiers ] = useState(fuzzySearch('', [ ...lifespanModifiers ]));
 
 	const handlePress = (changeValue) => {
 		const newValue = (parseFloat(weight) + changeValue).toFixed(1);

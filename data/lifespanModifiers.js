@@ -123,14 +123,14 @@ const lifespanModifiers = [
 	},
 	{
 		id: 17,
-		text: 'Lost parent',
+		text: 'Lost father',
 		value: '2y',
 		minutes: 1051200,
 		type: NEGATIVE
 	},
 	{
 		id: 18,
-		text: 'Lost parent',
+		text: 'Lost mother',
 		value: '2y',
 		minutes: 1051200,
 		type: NEGATIVE
