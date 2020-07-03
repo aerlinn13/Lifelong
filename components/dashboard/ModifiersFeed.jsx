@@ -93,6 +93,7 @@ const ModifiersFeed = ({ userModifiers }) => {
 	return (
 		<Wrapper>
 			<FlatList
+				keyboardShouldPersistTaps={'handled'}
 				ItemSeparatorComponent={() => <Separator />}
 				data={getData(userModifiers)}
 				renderItem={({ item, index }) => rowRenderer(item, index)}

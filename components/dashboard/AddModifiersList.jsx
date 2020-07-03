@@ -123,6 +123,7 @@ const AddModifiersList = ({
 				returnKeyType="done"
 			/>
 			<FlatList
+				keyboardShouldPersistTaps={'handled'}
 				ItemSeparatorComponent={() => <Separator />}
 				data={filteredModifiers}
 				style={{ flexGrow: 2 }}
