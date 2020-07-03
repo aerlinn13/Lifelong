@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { Animated } from 'react-native';
 import styled from 'styled-components/native';
 import timeCalculator from '../../calculators/timeCalculator';
 
@@ -33,16 +34,55 @@ const Sign = styled.View`
 	width: 10px;
 	height: 10px;
 	position: absolute;
-	top: 6px;
-	left: 6px;
+	top: 3px;
+	left: 1px;
 `;
 
-const TimeIndicator = ({ time, label, color }) => (
-	<Wrapper>
-		<Sign color={color} />
-		<Header>{timeCalculator(time)}</Header>
-		<Text>{label}</Text>
-	</Wrapper>
-);
+const TimeIndicator = ({ time, label, color }) => {
+	const animation = useRef(new Animated.Value(0)).current;
+	React.useEffect(
+		() => {
+			Animated.sequence([
+				Animated.timing(animation, {
+					toValue: 1,
+					duration: 200
+				}),
+				Animated.timing(animation, {
+					toValue: 0,
+					duration: 200
+				})
+			]).start();
+		},
+		[ time ]
+	);
+	return (
+		<Wrapper>
+			<Animated.View
+				style={[
+					{
+						position: 'relative'
+					},
+					{
+						width: '100%'
+					},
+					{
+						transform: [
+							{
+								translateY: animation.interpolate({
+									inputRange: [ 0, 1 ],
+									outputRange: [ 0, 40 ]
+								})
+							}
+						]
+					}
+				]}
+			>
+				<Sign color={color} />
+			</Animated.View>
+			<Header>{timeCalculator(time)}</Header>
+			<Text>{label}</Text>
+		</Wrapper>
+	);
+};
 
 export default TimeIndicator;
