@@ -3,7 +3,7 @@ import { FlatList, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import lifespanModifiers from '../../data/lifespanModifiers';
-import { updateWeight, addLifespanModifier, respawnOnboarding } from '../../state/actions';
+import { updateWeight, addLifespanModifier, respawnOnboarding, removeAllUserModifiers } from '../../state/actions';
 import fuzzySearch from '../../helpers/fuzzySearch';
 import AddModifierCell from './AddModifierCell';
 
@@ -72,7 +72,14 @@ const rowRenderer = (item, index, addLifespanModifier) => {
 	return <Span>{item.text}</Span>;
 };
 
-const AddModifiersList = ({ weight, updateWeight, addLifespanModifier, respawnOnboarding, addModifiersMode }) => {
+const AddModifiersList = ({
+	weight,
+	updateWeight,
+	addLifespanModifier,
+	respawnOnboarding,
+	removeAllUserModifiers,
+	setAddModifiersMode
+}) => {
 	const [ filterText, setFilterText ] = useState('');
 	const [ filteredModifiers, setFilteredModifiers ] = useState(fuzzySearch('', lifespanModifiers));
 
@@ -84,6 +91,13 @@ const AddModifiersList = ({ weight, updateWeight, addLifespanModifier, respawnOn
 	const handleSearchInputChange = (text) => {
 		if (text.toLowerCase() === 'respawn') {
 			respawnOnboarding();
+			return;
+		}
+
+		if (text.toLowerCase() === 'purge') {
+			removeAllUserModifiers();
+			setFilterText('');
+			setAddModifiersMode(false);
 			return;
 		}
 		setFilterText(text);
@@ -130,7 +144,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
 	updateWeight: (newWeight) => dispatch(updateWeight(newWeight)),
 	addLifespanModifier: (direction, id, minutes) => dispatch(addLifespanModifier(direction, id, minutes)),
-	respawnOnboarding: () => dispatch(respawnOnboarding())
+	respawnOnboarding: () => dispatch(respawnOnboarding()),
+	removeAllUserModifiers: () => dispatch(removeAllUserModifiers())
 });
 
 const AddModifiersListContainer = connect(mapStateToProps, mapDispatchToProps)(AddModifiersList);

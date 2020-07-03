@@ -45,6 +45,13 @@ function reducer(state = initialState, action) {
 				[action.direction]: state[action.direction] + action.minutes,
 				lifespanModifiers: [ ...state.lifespanModifiers, action.id ]
 			};
+		case actionTypes.REMOVE_ALL_USER_MODIFIERS:
+			return {
+				...state,
+				lifespanModifiers: [],
+				timeWon: 0,
+				timeLost: 0
+			};
 		default:
 			return state;
 	}

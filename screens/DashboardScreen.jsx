@@ -166,7 +166,10 @@ const DashboardScreen = ({
 					>
 						<Lists>
 							<ModifiersFeed userModifiers={lifespanModifiers} />
-							<AddModifiersList addModifiersMode={addModifiersMode} />
+							<AddModifiersList
+								addModifiersMode={addModifiersMode}
+								setAddModifiersMode={setAddModifiersMode}
+							/>
 						</Lists>
 					</Animated.View>
 				</StyledView>

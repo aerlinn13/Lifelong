@@ -32,3 +32,7 @@ export const addLifespanModifier = (direction, id, minutes) => ({
 	id,
 	minutes
 });
+
+export const removeAllUserModifiers = () => ({
+	type: actionTypes.REMOVE_ALL_USER_MODIFIERS
+});
