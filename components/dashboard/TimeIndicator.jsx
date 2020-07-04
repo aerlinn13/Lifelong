@@ -45,11 +45,11 @@ const TimeIndicator = ({ time, label, color }) => {
 			Animated.sequence([
 				Animated.timing(animation, {
 					toValue: 1,
-					duration: 200
+					duration: 400
 				}),
 				Animated.timing(animation, {
 					toValue: 0,
-					duration: 200
+					duration: 400
 				})
 			]).start();
 		},

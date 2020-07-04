@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Dimensions } from 'react-native';
+import { FlatList, Dimensions, Keyboard } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import lifespanModifiers from '../../data/lifespanModifiers';
-import { updateWeight, addLifespanModifier, respawnOnboarding, removeAllUserModifiers } from '../../state/actions';
+import {
+	updateWeight,
+	addLifespanModifier,
+	respawnOnboarding,
+	removeAllUserModifiers,
+	removeLastModifier
+} from '../../state/actions';
 import fuzzySearch from '../../helpers/fuzzySearch';
 import AddModifierCell from './AddModifierCell';
 import Feedback from './Feedback';
 
 const Wrapper = styled.View`
 	display: flex;
-	width: ${(props) => `${Dimensions.get('window').width - 40}px`};
+	width: ${() => `${Dimensions.get('window').width - 40}px`};
 	min-height: 150px;
 	flex-direction: column;
 	border-radius: 10px;
@@ -51,7 +57,7 @@ const WeightButtonText = styled.Text`
 `;
 
 const WeightLabel = styled.Text`
-	width: 60px;
+	width: 50px;
 	font-size: 24px;
 	font-family: KhulaRegular;
 	color: black;
@@ -77,10 +83,20 @@ const AddModifiersList = ({
 	addLifespanModifier,
 	respawnOnboarding,
 	removeAllUserModifiers,
+	removeLastModifier,
+	addModifiersMode,
 	setAddModifiersMode
 }) => {
 	const [ filterText, setFilterText ] = useState('');
 	const [ filteredModifiers, setFilteredModifiers ] = useState(fuzzySearch('', [ ...lifespanModifiers ]));
+
+	useEffect(
+		() => {
+			setFilterText('');
+			setFilteredModifiers(fuzzySearch('', [ ...lifespanModifiers ]));
+		},
+		[ addModifiersMode ]
+	);
 
 	const handlePress = (changeValue) => {
 		const newValue = (parseFloat(weight) + changeValue).toFixed(1);
@@ -90,15 +106,26 @@ const AddModifiersList = ({
 	const handleSearchInputChange = (text) => {
 		if (text.toLowerCase() === 'respawn') {
 			respawnOnboarding();
+			Keyboard.dismiss();
 			return;
 		}
 
 		if (text.toLowerCase() === 'purge all data') {
 			removeAllUserModifiers();
-			setFilterText('');
+			setFilterText(' ');
 			setAddModifiersMode(false);
+			Keyboard.dismiss();
 			return;
 		}
+
+		if (text.toLowerCase() === 'remove last') {
+			removeLastModifier();
+			setFilterText(' ');
+			setAddModifiersMode(false);
+			Keyboard.dismiss();
+			return;
+		}
+
 		setFilterText(text);
 		setFilteredModifiers(fuzzySearch(text, lifespanModifiers));
 	};
@@ -116,7 +143,13 @@ const AddModifiersList = ({
 			</WeightTweaker>
 			<Separator />
 			<SearchInput
-				placeholder={`Try 'no red meat today'`}
+				placeholder={
+					addModifiersMode ? (
+						`Try '${lifespanModifiers[Math.floor(Math.random() * lifespanModifiers.length)].text}'`
+					) : (
+						''
+					)
+				}
 				value={filterText}
 				onChangeText={handleSearchInputChange}
 				returnKeyType="done"
@@ -126,7 +159,7 @@ const AddModifiersList = ({
 				ItemSeparatorComponent={() => <Separator />}
 				data={filteredModifiers}
 				renderItem={({ item, index }) => rowRenderer(item, index, addLifespanModifier)}
-				keyExtractor={(item) => item.text}
+				keyExtractor={(item, index) => item.text + index}
 				bounces={false}
 				ListEmptyComponent={<Feedback />}
 			/>
@@ -144,7 +177,8 @@ const mapDispatchToProps = (dispatch) => ({
 	updateWeight: (newWeight) => dispatch(updateWeight(newWeight)),
 	addLifespanModifier: (direction, id, minutes) => dispatch(addLifespanModifier(direction, id, minutes)),
 	respawnOnboarding: () => dispatch(respawnOnboarding()),
-	removeAllUserModifiers: () => dispatch(removeAllUserModifiers())
+	removeAllUserModifiers: () => dispatch(removeAllUserModifiers()),
+	removeLastModifier: () => dispatch(removeLastModifier())
 });
 
 const AddModifiersListContainer = connect(mapStateToProps, mapDispatchToProps)(AddModifiersList);

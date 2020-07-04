@@ -2,6 +2,7 @@ import initialState from './model';
 import * as actionTypes from './actionTypes';
 import geneticCalculator from '../calculators/geneticCalculator';
 import negativeBMICalculator, { bmiRate } from '../calculators/bmiCalculator';
+import data from '../data/lifespanModifiers';
 
 function reducer(state = initialState, action) {
 	switch (action.type) {
@@ -51,6 +52,20 @@ function reducer(state = initialState, action) {
 				lifespanModifiers: [],
 				timeWon: 0,
 				timeLost: 0
+			};
+		case actionTypes.REMOVE_LAST_MODIFIER:
+			if (!state.lifespanModifiers.length) {
+				return state;
+			}
+
+			const lifespanModifiers = [ ...state.lifespanModifiers ];
+			const lastModifierId = lifespanModifiers.pop();
+			const lastModifierObj = data[lastModifierId];
+			const timeToUpdate = lastModifierObj.type === '+' ? 'timeWon' : 'timeLost';
+			return {
+				...state,
+				lifespanModifiers,
+				[timeToUpdate]: state[timeToUpdate] - lastModifierObj.minutes
 			};
 		default:
 			return state;

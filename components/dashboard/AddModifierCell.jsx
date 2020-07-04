@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { Animated } from 'react-native';
 import styled from 'styled-components/native';
 
 const Cell = styled.View`
@@ -36,24 +37,48 @@ const AddModifierButton = styled.TouchableOpacity`
 
 const AddModifierCell = ({ item, index, addLifespanModifier }) => {
 	const [ isAdded, setAdded ] = useState(false);
+	const animation = useRef(new Animated.Value(0)).current;
 
 	const handlePress = () => {
-		setAdded(!isAdded);
 		const direction = item.type === '+' ? 'timeWon' : 'timeLost';
 		addLifespanModifier(direction, item.id, item.minutes);
-		setInterval(() => setAdded(false), 2000);
+		Animated.sequence([
+			Animated.timing(animation, {
+				toValue: 1,
+				duration: 200
+			}),
+			Animated.timing(animation, {
+				toValue: 0,
+				duration: 200
+			})
+		]).start();
 	};
 	return (
 		<Cell key={'add' + index + item.text}>
 			<Header>{item.text}</Header>
-			<AddModifierButton
-				isPositive={item.type === '+'}
-				onPress={handlePress}
-				isAdded={isAdded}
-				disabled={isAdded}
+			<Animated.View
+				style={[
+					{
+						transform: [
+							{
+								translateY: animation.interpolate({
+									inputRange: [ 0, 1 ],
+									outputRange: [ 0, -5 ]
+								})
+							}
+						]
+					}
+				]}
 			>
-				<Label>{item.value}</Label>
-			</AddModifierButton>
+				<AddModifierButton
+					isPositive={item.type === '+'}
+					onPress={handlePress}
+					isAdded={isAdded}
+					disabled={isAdded}
+				>
+					<Label>{item.value}</Label>
+				</AddModifierButton>
+			</Animated.View>
 		</Cell>
 	);
 };
