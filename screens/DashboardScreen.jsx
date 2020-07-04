@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Animated, Dimensions } from 'react-native';
+import { Animated, Dimensions, Platform } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -30,7 +30,6 @@ const Mask = styled.View`
 	width: 100%;
 	height: 100%;
 	background-color: #f3f3f3;
-	display: ${(props) => (props.disabled ? 'none' : 'flex')};
 `;
 
 const Indicators = styled.View`
@@ -50,7 +49,7 @@ const TimeIndicators = styled.View`
 
 const Lists = styled.View`
 	display: flex;
-	flex-direction: row;
+	flex-direction: ${() => (Platform.OS === 'ios' ? 'row' : 'column')};
 	justify-content: flex-start;
 	align-items: flex-start;
 `;
@@ -68,7 +67,12 @@ const DashboardScreen = ({
 }) => {
 	const death = moment(dob, 'dd.mm.yyyy').add(lifespan, 'minutes');
 	const [ addModifiersMode, setAddModifiersMode ] = useState(false);
+	const [ maskDisabled, setMaskDisabled ] = useState(false);
 	const animation = useRef(new Animated.Value(0)).current;
+
+	useEffect(() => {
+		setTimeout(() => setMaskDisabled(true), 400);
+	}, []);
 
 	useEffect(
 		() => {
@@ -95,6 +99,9 @@ const DashboardScreen = ({
 		},
 		[ addModifiersMode ]
 	);
+
+	const xRange = Platform.OS === 'ios' ? [ 0, -Dimensions.get('window').width ] : [ 0, 0 ];
+	const yRange = Platform.OS === 'ios' ? [ 0, -170 ] : [ 0, -170 ];
 
 	return (
 		<React.Fragment>
@@ -135,46 +142,88 @@ const DashboardScreen = ({
 						]}
 					>
 						<TimeIndicators>
-							<TimeIndicator time={timeWon} label="won" color="#7ED321" />
-							<TimeIndicator time={timeLost} label="lost" color="#D0021B" />
+							<TimeIndicator time={timeWon} color="#7ED321" />
+							<TimeIndicator time={timeLost} color="#D0021B" />
 						</TimeIndicators>
 					</Animated.View>
-					<Animated.View
-						style={[
-							{
-								transform: [
-									{
-										translateX: animation.interpolate({
-											inputRange: [ 0, 1 ],
-											outputRange: [ 0, -Dimensions.get('window').width ]
-										})
-									},
-									{
-										translateY: animation.interpolate({
-											inputRange: [ 0, 1 ],
-											outputRange: [ 0, -170 ]
-										})
-									}
-								]
-							}
-						]}
-					>
-						<Lists>
-							<ModifiersFeed userModifiers={lifespanModifiers} />
+					{Platform.OS === 'ios' ? (
+						<Animated.View
+							style={[
+								{
+									transform: [
+										{
+											translateX: animation.interpolate({
+												inputRange: [ 0, 1 ],
+												outputRange: xRange
+											})
+										},
+										{
+											translateY: animation.interpolate({
+												inputRange: [ 0, 1 ],
+												outputRange: yRange
+											})
+										}
+									]
+								}
+							]}
+						>
+							<Lists>
+								<ModifiersFeed userModifiers={lifespanModifiers} />
+								<AddModifiersList
+									addModifiersMode={addModifiersMode}
+									setAddModifiersMode={setAddModifiersMode}
+									timeWon={timeWon}
+									timeLost={timeLost}
+								/>
+							</Lists>
+						</Animated.View>
+					) : addModifiersMode ? (
+						<Animated.View
+							style={[
+								{
+									transform: [
+										{
+											translateY: animation.interpolate({
+												inputRange: [ 0, 1 ],
+												outputRange: yRange
+											})
+										}
+									]
+								}
+							]}
+						>
 							<AddModifiersList
 								addModifiersMode={addModifiersMode}
 								setAddModifiersMode={setAddModifiersMode}
 								timeWon={timeWon}
 								timeLost={timeLost}
 							/>
-						</Lists>
-					</Animated.View>
+						</Animated.View>
+					) : (
+						<Animated.View
+							style={[
+								{
+									transform: [
+										{
+											translateY: animation.interpolate({
+												inputRange: [ 0, 1 ],
+												outputRange: yRange
+											})
+										}
+									]
+								}
+							]}
+						>
+							<ModifiersFeed userModifiers={lifespanModifiers} />
+						</Animated.View>
+					)}
 				</StyledView>
 				<ReportButton
 					addModifiersMode={addModifiersMode}
 					onPressReportButton={() => setAddModifiersMode(!addModifiersMode)}
 				/>
 			</SafeAreaView>
+			{maskDisabled ? null : <Mask />}
 		</React.Fragment>
 	);
 };

@@ -34,11 +34,11 @@ const Sign = styled.View`
 	width: 10px;
 	height: 10px;
 	position: absolute;
-	top: 3px;
+	top: -10px;
 	left: 1px;
 `;
 
-const TimeIndicator = ({ time, label, color }) => {
+const TimeIndicator = ({ time, color }) => {
 	const animation = useRef(new Animated.Value(0)).current;
 	React.useEffect(
 		() => {
@@ -80,7 +80,6 @@ const TimeIndicator = ({ time, label, color }) => {
 				<Sign color={color} />
 			</Animated.View>
 			<Header>{timeCalculator(time)}</Header>
-			<Text>{label}</Text>
 		</Wrapper>
 	);
 };

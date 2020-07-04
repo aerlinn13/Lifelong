@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, Dimensions, Keyboard } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import lifespanModifiers from '../../data/lifespanModifiers';
@@ -65,11 +65,12 @@ const WeightLabel = styled.Text`
 	color: black;
 `;
 
-const SearchInput = styled.TextInput`
+const SearchInput = styled(TextInput)`
 	font-size: 20px;
 	font-family: KhulaLight;
 	color: #8f8f8f;
 	height: 60px;
+	width: 100%;
 `;
 
 const rowRenderer = (item, index, addLifespanModifier) => {
@@ -153,7 +154,7 @@ const AddModifiersList = ({
 					)
 				}
 				value={filterText}
-				onChangeText={handleSearchInputChange}
+				onChangeText={(text) => handleSearchInputChange(text)}
 				returnKeyType="done"
 			/>
 			<FlatList
