@@ -302,6 +302,139 @@ const lifespanModifiers = [
 		value: '3h',
 		minutes: 180,
 		type: POSITIVE
+	},
+	{
+		id: 43,
+		text: '1 cigarette',
+		value: '1d',
+		minutes: 1440,
+		type: NEGATIVE
+	},
+	{
+		id: 44,
+		text: 'Missed flight',
+		value: '3h',
+		minutes: 180,
+		type: NEGATIVE
+	},
+	{
+		id: 45,
+		text: 'Hometown visit',
+		value: '2d',
+		minutes: 2880,
+		type: POSITIVE
+	},
+	{
+		id: 46,
+		text: 'Cancer 1 stage',
+		value: '3y',
+		minutes: 1577846,
+		type: NEGATIVE
+	},
+	{
+		id: 47,
+		text: 'Mountain retreat',
+		value: '15d',
+		minutes: 21600,
+		type: POSITIVE
+	},
+	{
+		id: 48,
+		text: 'North Wales holiday',
+		value: '20d',
+		minutes: 28800,
+		type: POSITIVE
+	},
+	{
+		id: 49,
+		text: 'Scotland holiday',
+		value: '30d',
+		minutes: 43200,
+		type: POSITIVE
+	},
+	{
+		id: 50,
+		text: 'St Petersburg holiday',
+		value: '30d',
+		minutes: 43200,
+		type: POSITIVE
+	},
+	{
+		id: 51,
+		text: 'Moscow holiday',
+		value: '20d',
+		minutes: 28800,
+		type: POSITIVE
+	},
+	{
+		id: 52,
+		text: 'Long flight',
+		value: '1d',
+		minutes: 1440,
+		type: NEGATIVE
+	},
+	{
+		id: 53,
+		text: 'Sleepless night',
+		value: '3d',
+		minutes: 4320,
+		type: NEGATIVE
+	},
+	{
+		id: 54,
+		text: 'Promotion at work',
+		value: '80d',
+		minutes: 115200,
+		type: POSITIVE
+	},
+	{
+		id: 55,
+		text: 'Lost job',
+		value: '120d',
+		minutes: 172800,
+		type: NEGATIVE
+	},
+	{
+		id: 56,
+		text: 'Sexual intercourse',
+		value: '3d',
+		minutes: 4320,
+		type: POSITIVE
+	},
+	{
+		id: 57,
+		text: 'Shower',
+		value: '2h',
+		minutes: 120,
+		type: POSITIVE
+	},
+	{
+		id: 58,
+		text: 'Joint of weed',
+		value: '15d',
+		minutes: 21600,
+		type: NEGATIVE
+	},
+	{
+		id: 59,
+		text: 'Shopping as man',
+		value: '3h',
+		minutes: 120,
+		type: NEGATIVE
+	},
+	{
+		id: 60,
+		text: 'Shopping as woman',
+		value: '3h',
+		minutes: 120,
+		type: POSITIVE
+	},
+	{
+		id: 61,
+		text: 'Shopping as man',
+		value: '3h',
+		minutes: 120,
+		type: NEGATIVE
 	}
 ];
 
