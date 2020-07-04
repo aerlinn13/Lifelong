@@ -3,7 +3,7 @@
 		"name": "Lifelong",
 		"slug": "Lifelong",
 		"platforms": [ "ios", "android", "web" ],
-		"version": "1.0.5",
+		"version": "1.0.6",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",
 		"splash": {
@@ -19,7 +19,8 @@
 		},
 		"android": {
 			"package": "com.aerlinn.lifelong",
-			"versionCode": 1
+			"versionCode": 1,
+			"softwareKeyboardLayoutMode": "pan"
 		}
 	}
 }
