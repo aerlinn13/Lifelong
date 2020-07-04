@@ -169,6 +169,8 @@ const DashboardScreen = ({
 							<AddModifiersList
 								addModifiersMode={addModifiersMode}
 								setAddModifiersMode={setAddModifiersMode}
+								timeWon={timeWon}
+								timeLost={timeLost}
 							/>
 						</Lists>
 					</Animated.View>

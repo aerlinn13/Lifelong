@@ -6,12 +6,13 @@ import lifespanModifiers from '../../data/lifespanModifiers';
 import { updateWeight, addLifespanModifier, respawnOnboarding, removeAllUserModifiers } from '../../state/actions';
 import fuzzySearch from '../../helpers/fuzzySearch';
 import AddModifierCell from './AddModifierCell';
+import Feedback from './Feedback';
 
 const Wrapper = styled.View`
 	display: flex;
 	width: ${(props) => `${Dimensions.get('window').width - 40}px`};
+	min-height: 150px;
 	flex-direction: column;
-	flex-grow: 2;
 	border-radius: 10px;
 	margin: 20px;
 	padding: 0px 15px;
@@ -62,8 +63,6 @@ const SearchInput = styled.TextInput`
 	color: #8f8f8f;
 	height: 60px;
 `;
-
-const EmptyCell = styled.View``;
 
 const rowRenderer = (item, index, addLifespanModifier) => {
 	if (item.type !== 'LAST') {
@@ -126,11 +125,10 @@ const AddModifiersList = ({
 				keyboardShouldPersistTaps={'handled'}
 				ItemSeparatorComponent={() => <Separator />}
 				data={filteredModifiers}
-				style={{ flexGrow: 2 }}
 				renderItem={({ item, index }) => rowRenderer(item, index, addLifespanModifier)}
 				keyExtractor={(item) => item.text}
 				bounces={false}
-				ListEmptyComponent={<EmptyCell />}
+				ListEmptyComponent={<Feedback />}
 			/>
 		</Wrapper>
 	);

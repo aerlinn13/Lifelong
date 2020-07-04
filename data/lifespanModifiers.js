@@ -295,6 +295,13 @@ const lifespanModifiers = [
 		value: '12h',
 		minutes: 720,
 		type: POSITIVE
+	},
+	{
+		id: 42,
+		text: 'No junk food today',
+		value: '3h',
+		minutes: 180,
+		type: POSITIVE
 	}
 ];
 
