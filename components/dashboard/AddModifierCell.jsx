@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Animated } from 'react-native';
 import styled from 'styled-components/native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Cell = styled.View`
 	height: 55px;
@@ -24,7 +25,7 @@ const Label = styled.Text`
 	font-family: KhulaRegular;
 `;
 
-const AddModifierButton = styled.TouchableOpacity`
+const AddModifierButton = styled(TouchableOpacity)`
 	background-color: ${(props) => (props.isAdded ? '#c9c9c9' : props.isPositive ? '#7ED321' : '#D0021B')};
 	height: 40px;
 	min-width: 70px;

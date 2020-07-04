@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, Dimensions, Keyboard } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import lifespanModifiers from '../../data/lifespanModifiers';
@@ -23,6 +24,7 @@ const Wrapper = styled.View`
 	margin: 20px;
 	padding: 0px 15px;
 	background-color: white;
+	z-index: 1000;
 `;
 
 const Separator = styled.View`
@@ -44,7 +46,7 @@ const WeightTweaker = styled.View`
 	height: 60px;
 `;
 
-const WeightButton = styled.TouchableOpacity`
+const WeightButton = styled(TouchableOpacity)`
 	width: 50px;
 	height: 30px;
 	background-color: white;

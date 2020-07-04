@@ -66,6 +66,10 @@ const DashboardScreen = ({
 	onboardingFinished,
 	lifespanModifiers
 }) => {
+	const death = moment(dob, 'dd.mm.yyyy').add(lifespan, 'minutes');
+	const [ addModifiersMode, setAddModifiersMode ] = useState(false);
+	const animation = useRef(new Animated.Value(0)).current;
+
 	useEffect(
 		() => {
 			if (!onboardingFinished) {
@@ -75,26 +79,17 @@ const DashboardScreen = ({
 		[ onboardingFinished ]
 	);
 
-	const death = moment(dob, 'dd.mm.yyyy').add(lifespan, 'minutes');
-	const [ maskDisabled, setMaskDisabled ] = useState(false);
-	const [ addModifiersMode, setAddModifiersMode ] = useState(false);
-
-	if (!maskDisabled) {
-		setTimeout(() => setMaskDisabled(true), 300);
-	}
-
-	const animation = useRef(new Animated.Value(0)).current;
-	React.useEffect(
+	useEffect(
 		() => {
 			if (addModifiersMode) {
 				Animated.timing(animation, {
 					toValue: 1,
-					duration: 300
+					duration: 400
 				}).start();
 			} else {
 				Animated.timing(animation, {
 					toValue: 0,
-					duration: 300
+					duration: 400
 				}).start();
 			}
 		},
@@ -180,7 +175,6 @@ const DashboardScreen = ({
 					onPressReportButton={() => setAddModifiersMode(!addModifiersMode)}
 				/>
 			</SafeAreaView>
-			<Mask disabled={maskDisabled} />
 		</React.Fragment>
 	);
 };

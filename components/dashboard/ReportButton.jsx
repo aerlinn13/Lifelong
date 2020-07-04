@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import { AntDesign } from '@expo/vector-icons';
 
 const Wrapper = styled.TouchableOpacity`
 	width: 60px;
@@ -18,6 +19,7 @@ const Wrapper = styled.TouchableOpacity`
 const Text = styled.Text`
 	color: white;
 	font-size: 45px;
+	line-height: 100px;
 	font-family: KhulaSemiBold;
 	transform: ${(props) => (props.addModifiersMode ? 'rotate(45deg)' : 'rotate(0deg)')};
 `;
@@ -25,7 +27,11 @@ const Text = styled.Text`
 const ReportButton = ({ addModifiersMode, onPressReportButton }) => {
 	return (
 		<Wrapper addModifiersMode={addModifiersMode} onPress={onPressReportButton}>
-			<Text addModifiersMode={addModifiersMode}>{'+'}</Text>
+			{addModifiersMode ? (
+				<AntDesign name="close" size={24} color="white" />
+			) : (
+				<AntDesign name="plus" size={24} color="white" />
+			)}
 		</Wrapper>
 	);
 };
