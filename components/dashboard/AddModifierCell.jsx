@@ -46,11 +46,13 @@ const AddModifierCell = ({ item, index, addLifespanModifier }) => {
 		Animated.sequence([
 			Animated.timing(animation, {
 				toValue: 1,
-				duration: 200
+				duration: 200,
+				useNativeDriver: true
 			}),
 			Animated.timing(animation, {
 				toValue: 0,
-				duration: 200
+				duration: 200,
+				useNativeDriver: true
 			})
 		]).start();
 	};

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Dimensions, Keyboard } from 'react-native';
+import { FlatList, Dimensions, Keyboard, Modal } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
@@ -14,6 +15,7 @@ import {
 import fuzzySearch from '../../helpers/fuzzySearch';
 import AddModifierCell from './AddModifierCell';
 import Feedback from './Feedback';
+import { ConfirmButton } from '../onboarding/layout';
 
 const Wrapper = styled.View`
 	display: flex;
@@ -25,6 +27,7 @@ const Wrapper = styled.View`
 	padding: 0px 15px;
 	background-color: white;
 	z-index: 1000;
+	position: relative;
 `;
 
 const Separator = styled.View`
@@ -65,12 +68,66 @@ const WeightLabel = styled.Text`
 	color: black;
 `;
 
+const Search = styled.View`
+	height: 60px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+`;
+
 const SearchInput = styled(TextInput)`
+	display: flex;
+	flex-grow: 3;
 	font-size: 20px;
 	font-family: KhulaLight;
 	color: #8f8f8f;
 	height: 60px;
+`;
+
+const ClearButton = styled(TouchableOpacity)``;
+
+const ModalWrapper = styled.View`
 	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`;
+
+const ModalBody = styled.View`
+	width: 80%;
+	height: 45%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #000;
+	border-radius: 10px;
+	padding: 15px;
+`;
+
+const ModalHeader = styled.Text`
+	font-size: 20px;
+	color: white;
+	font-family: KhulaRegular;
+`;
+
+const ModalTextContainer = styled.View`
+	display: flex;
+	flex-grow: 3;
+	flex-direction: column;
+	justify-content: center;
+	padding: 20px 0px;
+`;
+
+const ModalText = styled.Text`
+	font-size: 16px;
+	color: white;
+	display: flex;
+	font-family: KhulaLight;
 `;
 
 const rowRenderer = (item, index, addLifespanModifier) => {
@@ -92,14 +149,14 @@ const AddModifiersList = ({
 }) => {
 	const [ filterText, setFilterText ] = useState('');
 	const [ filteredModifiers, setFilteredModifiers ] = useState(fuzzySearch('', [ ...lifespanModifiers ]));
+	const [ modalVisible, setModalVisible ] = useState(false);
 
-	useEffect(
-		() => {
-			setFilterText('');
-			setFilteredModifiers(fuzzySearch('', [ ...lifespanModifiers ]));
-		},
-		[ addModifiersMode ]
-	);
+	useEffect(() => clearSearch(), [ addModifiersMode ]);
+
+	const clearSearch = () => {
+		setFilterText('');
+		setFilteredModifiers(fuzzySearch('', [ ...lifespanModifiers ]));
+	};
 
 	const handlePress = (changeValue) => {
 		const newValue = (parseFloat(weight) + changeValue).toFixed(1);
@@ -115,7 +172,7 @@ const AddModifiersList = ({
 
 		if (text.toLowerCase() === 'purge all data') {
 			removeAllUserModifiers();
-			setFilterText(' ');
+			setFilterText('');
 			setAddModifiersMode(false);
 			Keyboard.dismiss();
 			return;
@@ -123,7 +180,7 @@ const AddModifiersList = ({
 
 		if (text.toLowerCase() === 'remove last') {
 			removeLastModifier();
-			setFilterText(' ');
+			setFilterText('');
 			setAddModifiersMode(false);
 			Keyboard.dismiss();
 			return;
@@ -135,6 +192,21 @@ const AddModifiersList = ({
 
 	return (
 		<Wrapper>
+			<Modal animationType="slide" transparent={true} visible={modalVisible}>
+				<ModalWrapper>
+					<ModalBody>
+						<ModalHeader>Type-in commands</ModalHeader>
+						<ModalTextContainer>
+							<ModalText>Remove last – removes last lifespan modifier.</ModalText>
+							<ModalText>Purge all data – removes all added lifespan modifiers.</ModalText>
+							<ModalText>
+								Respawn – restarts onboarding without deleting all lifespan modifiers.
+							</ModalText>
+						</ModalTextContainer>
+						<ConfirmButton label="OK" onPress={() => setModalVisible(false)} color="#8f8f8f" />
+					</ModalBody>
+				</ModalWrapper>
+			</Modal>
 			<WeightTweaker>
 				<WeightButton onPress={() => handlePress(-0.1)}>
 					<WeightButtonText>–100g</WeightButtonText>
@@ -145,18 +217,29 @@ const AddModifiersList = ({
 				</WeightButton>
 			</WeightTweaker>
 			<Separator />
-			<SearchInput
-				placeholder={
-					addModifiersMode ? (
-						`Try '${lifespanModifiers[Math.floor(Math.random() * lifespanModifiers.length)].text}'`
-					) : (
-						''
-					)
-				}
-				value={filterText}
-				onChangeText={(text) => handleSearchInputChange(text)}
-				returnKeyType="done"
-			/>
+			<Search>
+				<SearchInput
+					placeholder={
+						addModifiersMode ? (
+							`Try '${lifespanModifiers[Math.floor(Math.random() * lifespanModifiers.length)].text}'`
+						) : (
+							''
+						)
+					}
+					value={filterText}
+					onChangeText={(text) => handleSearchInputChange(text)}
+					returnKeyType="done"
+				/>
+				{filterText.length ? (
+					<ClearButton onPress={clearSearch}>
+						<AntDesign name="close" size={24} color="#8f8f8f" />
+					</ClearButton>
+				) : (
+					<ClearButton onPress={() => setModalVisible(true)}>
+						<AntDesign name="questioncircleo" size={24} color="#8f8f8f" />
+					</ClearButton>
+				)}
+			</Search>
 			<FlatList
 				keyboardShouldPersistTaps={'handled'}
 				ItemSeparatorComponent={() => <Separator />}

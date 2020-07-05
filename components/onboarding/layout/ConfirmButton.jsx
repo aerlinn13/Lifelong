@@ -9,7 +9,7 @@ const Container = styled.View`
 `;
 
 const Button = styled.TouchableOpacity`
-	background-color: ${(props) => (props.disabled ? '#c0c0c0' : '#779ecb')};
+	background-color: ${(props) => (props.disabled ? '#c0c0c0' : props.color || '#779ecb')};
 	opacity: ${(props) => (props.disabled ? 0.6 : 1)};
 	color: black;
 	width: ${(props) => (props.wide ? '160px' : '100px')};
@@ -30,10 +30,10 @@ const ButtonText = styled.Text`
 	text-align: center;
 `;
 
-const ConfirmButton = ({ label, onPress, disabled, wide }) => {
+const ConfirmButton = ({ label, onPress, disabled, wide, color }) => {
 	return (
 		<Container>
-			<Button onPress={onPress} disabled={disabled} wide={wide}>
+			<Button onPress={onPress} disabled={disabled} wide={wide} color={color}>
 				<ButtonText>{label}</ButtonText>
 			</Button>
 		</Container>

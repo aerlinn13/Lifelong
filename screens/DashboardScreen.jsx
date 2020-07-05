@@ -88,12 +88,14 @@ const DashboardScreen = ({
 			if (addModifiersMode) {
 				Animated.timing(animation, {
 					toValue: 1,
-					duration: 400
+					duration: 400,
+					useNativeDriver: true
 				}).start();
 			} else {
 				Animated.timing(animation, {
 					toValue: 0,
-					duration: 400
+					duration: 400,
+					useNativeDriver: true
 				}).start();
 			}
 		},
@@ -101,7 +103,7 @@ const DashboardScreen = ({
 	);
 
 	const xRange = Platform.OS === 'ios' ? [ 0, -Dimensions.get('window').width ] : [ 0, 0 ];
-	const yRange = Platform.OS === 'ios' ? [ 0, -170 ] : [ 0, -170 ];
+	const yRange = [ 0, -170 ];
 
 	return (
 		<React.Fragment>
