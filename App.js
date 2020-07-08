@@ -11,6 +11,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { reactotronRedux } from 'reactotron-redux';
 import { persistReducer, persistStore } from 'redux-persist';
 import { StatusBar } from 'expo-status-bar';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -19,6 +21,20 @@ import OnboardingScreen from './screens/OnboardingScreen';
 
 import initialState from './state/model';
 import reducer from './state/reducer';
+
+const firebaseConfig = {
+	apiKey: 'AIzaSyDwRPeRthxLqh0qHDqmTpgDrEXtFkRs3Qw',
+	authDomain: 'lifelong13.firebaseapp.com',
+	databaseURL: 'https://lifelong13.firebaseio.com',
+	projectId: 'lifelong13',
+	storageBucket: 'lifelong13.appspot.com',
+	messagingSenderId: '773268323528',
+	appId: '1:773268323528:web:e54a912083a1805e8639fd',
+	measurementId: 'G-7RTZG1642M'
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
 const Stack = createStackNavigator();
 
