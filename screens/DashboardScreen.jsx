@@ -13,6 +13,7 @@ import {
 	ReportButton,
 	AddModifiersList
 } from '../components/dashboard';
+import { getModifiersData } from '../helpers/getModifiersData';
 
 const StyledView = styled.View`
 	background-color: #f3f3f3;
@@ -72,6 +73,7 @@ const DashboardScreen = ({
 
 	useEffect(() => {
 		setTimeout(() => setMaskDisabled(true), 400);
+		getModifiersData();
 	}, []);
 
 	useEffect(
