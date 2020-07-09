@@ -18,7 +18,10 @@ const initialState = {
 	paternalGrandfather: {},
 	lifespanModifiers: [],
 	data: [],
-	version: ''
+	version: '',
+	notes: '',
+	newData: [],
+	showWhatsNew: false
 };
 
 export default initialState;

@@ -14,7 +14,7 @@ import {
 	AddModifiersList
 } from '../components/dashboard';
 import { getModifiersData } from '../helpers/getModifiersData';
-import { setDataVersion, downloadData } from '../state/actions';
+import { setDataVersion, downloadData, setWhatsNew } from '../state/actions';
 
 const StyledView = styled.View`
 	background-color: #f3f3f3;
@@ -69,7 +69,9 @@ const DashboardScreen = ({
 	data,
 	version,
 	setDataVersion,
-	downloadData
+	downloadData,
+	setWhatsNew,
+	newData
 }) => {
 	const death = moment(dob, 'dd.mm.yyyy').add(lifespan, 'minutes');
 	const [ addModifiersMode, setAddModifiersMode ] = useState(false);
@@ -78,7 +80,7 @@ const DashboardScreen = ({
 
 	useEffect(() => {
 		setTimeout(() => setMaskDisabled(true), 400);
-		getModifiersData(version, setDataVersion, downloadData);
+		getModifiersData(data, version, setDataVersion, downloadData, setWhatsNew);
 	}, []);
 
 	useEffect(
@@ -93,7 +95,7 @@ const DashboardScreen = ({
 	useEffect(
 		() => {
 			if (addModifiersMode) {
-				getModifiersData(version, setDataVersion, downloadData);
+				getModifiersData(data, version, setDataVersion, downloadData, setWhatsNew);
 				Animated.timing(animation, {
 					toValue: 1,
 					duration: 400,
@@ -112,7 +114,7 @@ const DashboardScreen = ({
 
 	const xRange = Platform.OS === 'ios' ? [ 0, -Dimensions.get('window').width ] : [ 0, 0 ];
 	const yRange = [ 0, -170 ];
-
+	console.log(newData);
 	return (
 		<React.Fragment>
 			<SafeAreaView>
@@ -251,13 +253,15 @@ const mapStateToProps = (state) => {
 		onboardingFinished: state.onboardingFinished,
 		lifespanModifiers: state.lifespanModifiers,
 		data: state.data,
-		version: state.version
+		version: state.version,
+		newData: state.newData
 	};
 };
 
 const mapDispatchToProps = (dispatch) => ({
 	setDataVersion: (version) => dispatch(setDataVersion(version)),
-	downloadData: (data) => dispatch(downloadData(data))
+	downloadData: (data) => dispatch(downloadData(data)),
+	setWhatsNew: (data) => dispatch(setWhatsNew(data))
 });
 
 const DashboardScreenContainer = connect(mapStateToProps, mapDispatchToProps)(DashboardScreen);

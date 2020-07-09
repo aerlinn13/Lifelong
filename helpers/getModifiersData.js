@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-export const getModifiersData = (version, setDataVersion, downloadData) => {
-	console.log('fetching', version);
+export const getModifiersData = (currentData, version, setDataVersion, downloadData, setWhatsNew) => {
 	axios
 		.get('https://raw.githubusercontent.com/aerlinn13/lifelong-data/master/version.json')
 		.then(function(res) {
@@ -13,8 +12,10 @@ export const getModifiersData = (version, setDataVersion, downloadData) => {
 					.then(function(response) {
 						// handle success
 						if (response.data && response.data.length) {
-							setDataVersion(res.data.version);
+							setDataVersion(res.data.version, res.data.notes);
 							downloadData(response.data);
+							const newDataLength = response.data.length - currentData.length;
+							setWhatsNew(response.data.slice(-newDataLength));
 						}
 					})
 					.catch(function(error) {

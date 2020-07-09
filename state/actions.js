@@ -41,12 +41,22 @@ export const removeLastModifier = () => ({
 	type: actionTypes.REMOVE_LAST_MODIFIER
 });
 
-export const setDataVersion = (version) => ({
+export const setDataVersion = (version, notes) => ({
 	type: actionTypes.SET_DATA_VERSION,
-	version
+	version,
+	notes
 });
 
 export const downloadData = (data) => ({
 	type: actionTypes.DOWNLOAD_DATA,
 	data
+});
+
+export const setWhatsNew = (data) => ({
+	type: actionTypes.SET_WHATS_NEW,
+	data
+});
+
+export const dismissWhatsNew = () => ({
+	type: actionTypes.DISMISS_WHATS_NEW
 });

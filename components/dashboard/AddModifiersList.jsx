@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, Dimensions, Keyboard, Modal } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Foundation } from '@expo/vector-icons';
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
@@ -9,7 +9,8 @@ import {
 	addLifespanModifier,
 	respawnOnboarding,
 	removeAllUserModifiers,
-	removeLastModifier
+	removeLastModifier,
+	dismissWhatsNew
 } from '../../state/actions';
 import fuzzySearch from '../../helpers/fuzzySearch';
 import AddModifierCell from './AddModifierCell';
@@ -85,7 +86,9 @@ const SearchInput = styled(TextInput)`
 	height: 60px;
 `;
 
-const ClearButton = styled(TouchableOpacity)``;
+const ClearButton = styled(TouchableOpacity)`
+	margin-left: ${(props) => (props.marginLeft ? props.marginLeft + 'px' : '0')};
+`;
 
 const ModalWrapper = styled.View`
 	width: 100%;
@@ -145,7 +148,12 @@ const AddModifiersList = ({
 	removeLastModifier,
 	addModifiersMode,
 	setAddModifiersMode,
-	data
+	data,
+	version,
+	notes,
+	newData,
+	showWhatsNew,
+	dismissWhatsNew
 }) => {
 	const [ filterText, setFilterText ] = useState('');
 	const [ filteredModifiers, setFilteredModifiers ] = useState(fuzzySearch('', [ ...data ]));
@@ -233,27 +241,32 @@ const AddModifiersList = ({
 						<AntDesign name="questioncircleo" size={24} color="#8f8f8f" />
 					</ClearButton>
 				)}
+				{showWhatsNew && (
+					<ClearButton onPress={() => dismissWhatsNew()} marginLeft={10}>
+						<Foundation name="burst-new" size={32} color="#FF9153" />
+					</ClearButton>
+				)}
 			</Search>
-			{data.length ? (
-				<FlatList
-					keyboardShouldPersistTaps={'handled'}
-					ItemSeparatorComponent={() => <Separator />}
-					data={filteredModifiers}
-					renderItem={({ item, index }) => rowRenderer(item, index, addLifespanModifier)}
-					keyExtractor={(item, index) => item.text + index}
-					bounces={false}
-					ListEmptyComponent={<Feedback />}
-				/>
-			) : (
-				<AntDesign name="loading1" size={24} color="black" />
-			)}
+			<FlatList
+				keyboardShouldPersistTaps={'handled'}
+				ItemSeparatorComponent={() => <Separator />}
+				data={newData.length && showWhatsNew ? newData : filteredModifiers}
+				renderItem={({ item, index }) => rowRenderer(item, index, addLifespanModifier)}
+				keyExtractor={(item, index) => item.text + index}
+				bounces={false}
+				ListEmptyComponent={<Feedback />}
+			/>
 		</Wrapper>
 	);
 };
 
 const mapStateToProps = (state) => {
 	return {
-		weight: state.weight
+		weight: state.weight,
+		version: state.version,
+		notes: state.notes,
+		newData: state.newData,
+		showWhatsNew: state.showWhatsNew
 	};
 };
 
@@ -262,7 +275,8 @@ const mapDispatchToProps = (dispatch) => ({
 	addLifespanModifier: (direction, id, minutes) => dispatch(addLifespanModifier(direction, id, minutes)),
 	respawnOnboarding: () => dispatch(respawnOnboarding()),
 	removeAllUserModifiers: () => dispatch(removeAllUserModifiers()),
-	removeLastModifier: () => dispatch(removeLastModifier())
+	removeLastModifier: () => dispatch(removeLastModifier()),
+	dismissWhatsNew: () => dispatch(dismissWhatsNew())
 });
 
 const AddModifiersListContainer = connect(mapStateToProps, mapDispatchToProps)(AddModifiersList);

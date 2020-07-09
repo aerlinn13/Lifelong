@@ -69,12 +69,25 @@ function reducer(state = initialState, action) {
 		case actionTypes.SET_DATA_VERSION:
 			return {
 				...state,
-				version: action.version
+				version: action.version,
+				notes: action.nodes
 			};
 		case actionTypes.DOWNLOAD_DATA:
 			return {
 				...state,
 				data: action.data
+			};
+		case actionTypes.SET_WHATS_NEW:
+			return {
+				...state,
+				newData: action.data,
+				showWhatsNew: true
+			};
+		case actionTypes.DISMISS_WHATS_NEW:
+			return {
+				...state,
+				newData: [],
+				showWhatsNew: false
 			};
 		default:
 			return state;
