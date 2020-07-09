@@ -78,6 +78,7 @@ const DashboardScreen = ({
 
 	useEffect(() => {
 		setTimeout(() => setMaskDisabled(true), 400);
+		getModifiersData(version, setDataVersion, downloadData);
 	}, []);
 
 	useEffect(
@@ -231,6 +232,7 @@ const DashboardScreen = ({
 				<ReportButton
 					addModifiersMode={addModifiersMode}
 					onPressReportButton={() => setAddModifiersMode(!addModifiersMode)}
+					disabled={!data.length}
 				/>
 			</SafeAreaView>
 			{maskDisabled ? null : <Mask />}

@@ -190,14 +190,6 @@ const AddModifiersList = ({
 		setFilteredModifiers(fuzzySearch(text, data));
 	};
 
-	if (!data.length) {
-		return (
-			<Wrapper>
-				<WeightLabel>Loading...</WeightLabel>
-			</Wrapper>
-		);
-	}
-
 	return (
 		<Wrapper>
 			<Modal animationType="slide" transparent={true} visible={modalVisible}>
@@ -242,15 +234,19 @@ const AddModifiersList = ({
 					</ClearButton>
 				)}
 			</Search>
-			<FlatList
-				keyboardShouldPersistTaps={'handled'}
-				ItemSeparatorComponent={() => <Separator />}
-				data={filteredModifiers}
-				renderItem={({ item, index }) => rowRenderer(item, index, addLifespanModifier)}
-				keyExtractor={(item, index) => item.text + index}
-				bounces={false}
-				ListEmptyComponent={<Feedback />}
-			/>
+			{data.length ? (
+				<FlatList
+					keyboardShouldPersistTaps={'handled'}
+					ItemSeparatorComponent={() => <Separator />}
+					data={filteredModifiers}
+					renderItem={({ item, index }) => rowRenderer(item, index, addLifespanModifier)}
+					keyExtractor={(item, index) => item.text + index}
+					bounces={false}
+					ListEmptyComponent={<Feedback />}
+				/>
+			) : (
+				<AntDesign name="loading1" size={24} color="black" />
+			)}
 		</Wrapper>
 	);
 };
