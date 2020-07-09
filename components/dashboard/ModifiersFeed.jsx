@@ -1,7 +1,6 @@
 import React from 'react';
 import { FlatList, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
-import lifespanModifiers from '../../data/lifespanModifiers';
 
 const Wrapper = styled.View`
 	display: flex;
@@ -77,8 +76,8 @@ const rowRenderer = (item, index) => {
 	);
 };
 
-const getData = (userModifiers) => {
-	const modifiers = [ ...userModifiers.map((id) => lifespanModifiers[id]) ].reverse();
+const getData = (userModifiers, data) => {
+	const modifiers = [ ...userModifiers.map((id) => data[id]) ].reverse();
 	if (!modifiers.length) {
 		return [];
 	}
@@ -89,13 +88,13 @@ const getData = (userModifiers) => {
 	return [ ...modifiers, { type: 'LAST', text: `Showing last ${modifiers.length} records` } ];
 };
 
-const ModifiersFeed = ({ userModifiers }) => {
+const ModifiersFeed = ({ userModifiers, data }) => {
 	return (
 		<Wrapper>
 			<FlatList
 				keyboardShouldPersistTaps={'handled'}
 				ItemSeparatorComponent={() => <Separator />}
-				data={getData(userModifiers)}
+				data={getData(userModifiers, data)}
 				renderItem={({ item, index }) => rowRenderer(item, index)}
 				keyExtractor={(item, index) => item.text + index}
 				bounces={false}

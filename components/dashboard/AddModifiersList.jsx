@@ -4,7 +4,6 @@ import { AntDesign } from '@expo/vector-icons';
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
-import lifespanModifiers from '../../data/lifespanModifiers';
 import {
 	updateWeight,
 	addLifespanModifier,
@@ -145,17 +144,18 @@ const AddModifiersList = ({
 	removeAllUserModifiers,
 	removeLastModifier,
 	addModifiersMode,
-	setAddModifiersMode
+	setAddModifiersMode,
+	data
 }) => {
 	const [ filterText, setFilterText ] = useState('');
-	const [ filteredModifiers, setFilteredModifiers ] = useState(fuzzySearch('', [ ...lifespanModifiers ]));
+	const [ filteredModifiers, setFilteredModifiers ] = useState(fuzzySearch('', [ ...data ]));
 	const [ modalVisible, setModalVisible ] = useState(false);
 
 	useEffect(() => clearSearch(), [ addModifiersMode ]);
 
 	const clearSearch = () => {
 		setFilterText('');
-		setFilteredModifiers(fuzzySearch('', [ ...lifespanModifiers ]));
+		setFilteredModifiers(fuzzySearch('', [ ...data ]));
 	};
 
 	const handlePress = (changeValue) => {
@@ -187,8 +187,16 @@ const AddModifiersList = ({
 		}
 
 		setFilterText(text);
-		setFilteredModifiers(fuzzySearch(text, lifespanModifiers));
+		setFilteredModifiers(fuzzySearch(text, data));
 	};
+
+	if (!data.length) {
+		return (
+			<Wrapper>
+				<WeightLabel>Loading...</WeightLabel>
+			</Wrapper>
+		);
+	}
 
 	return (
 		<Wrapper>
@@ -219,13 +227,7 @@ const AddModifiersList = ({
 			<Separator />
 			<Search>
 				<SearchInput
-					placeholder={
-						addModifiersMode ? (
-							`Try '${lifespanModifiers[Math.floor(Math.random() * lifespanModifiers.length)].text}'`
-						) : (
-							''
-						)
-					}
+					placeholder={addModifiersMode ? `Try '${data[Math.floor(Math.random() * data.length)].text}'` : ''}
 					value={filterText}
 					onChangeText={(text) => handleSearchInputChange(text)}
 					returnKeyType="done"

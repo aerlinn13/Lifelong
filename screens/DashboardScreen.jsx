@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Animated, Dimensions, Platform } from 'react-native';
+import { Animated, Dimensions, Platform, AppState } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -14,6 +14,7 @@ import {
 	AddModifiersList
 } from '../components/dashboard';
 import { getModifiersData } from '../helpers/getModifiersData';
+import { setDataVersion, downloadData } from '../state/actions';
 
 const StyledView = styled.View`
 	background-color: #f3f3f3;
@@ -64,7 +65,11 @@ const DashboardScreen = ({
 	timeWon,
 	timeLost,
 	onboardingFinished,
-	lifespanModifiers
+	lifespanModifiers,
+	data,
+	version,
+	setDataVersion,
+	downloadData
 }) => {
 	const death = moment(dob, 'dd.mm.yyyy').add(lifespan, 'minutes');
 	const [ addModifiersMode, setAddModifiersMode ] = useState(false);
@@ -73,7 +78,6 @@ const DashboardScreen = ({
 
 	useEffect(() => {
 		setTimeout(() => setMaskDisabled(true), 400);
-		getModifiersData();
 	}, []);
 
 	useEffect(
@@ -88,6 +92,7 @@ const DashboardScreen = ({
 	useEffect(
 		() => {
 			if (addModifiersMode) {
+				getModifiersData(version, setDataVersion, downloadData);
 				Animated.timing(animation, {
 					toValue: 1,
 					duration: 400,
@@ -172,12 +177,13 @@ const DashboardScreen = ({
 							]}
 						>
 							<Lists>
-								<ModifiersFeed userModifiers={lifespanModifiers} />
+								<ModifiersFeed userModifiers={lifespanModifiers} data={data} />
 								<AddModifiersList
 									addModifiersMode={addModifiersMode}
 									setAddModifiersMode={setAddModifiersMode}
 									timeWon={timeWon}
 									timeLost={timeLost}
+									data={data}
 								/>
 							</Lists>
 						</Animated.View>
@@ -241,10 +247,17 @@ const mapStateToProps = (state) => {
 		timeWon: state.timeWon,
 		timeLost: state.timeLost,
 		onboardingFinished: state.onboardingFinished,
-		lifespanModifiers: state.lifespanModifiers
+		lifespanModifiers: state.lifespanModifiers,
+		data: state.data,
+		version: state.version
 	};
 };
 
-const DashboardScreenContainer = connect(mapStateToProps)(DashboardScreen);
+const mapDispatchToProps = (dispatch) => ({
+	setDataVersion: (version) => dispatch(setDataVersion(version)),
+	downloadData: (data) => dispatch(downloadData(data))
+});
+
+const DashboardScreenContainer = connect(mapStateToProps, mapDispatchToProps)(DashboardScreen);
 
 export default DashboardScreenContainer;

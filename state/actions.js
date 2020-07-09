@@ -40,3 +40,13 @@ export const removeAllUserModifiers = () => ({
 export const removeLastModifier = () => ({
 	type: actionTypes.REMOVE_LAST_MODIFIER
 });
+
+export const setDataVersion = (version) => ({
+	type: actionTypes.SET_DATA_VERSION,
+	version
+});
+
+export const downloadData = (data) => ({
+	type: actionTypes.DOWNLOAD_DATA,
+	data
+});
