@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, Dimensions, Keyboard, Modal } from 'react-native';
-import { AntDesign, Foundation } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
@@ -132,10 +132,11 @@ const ModalText = styled.Text`
 	font-family: KhulaLight;
 `;
 
-const rowRenderer = (item, index, addLifespanModifier) => {
+const rowRenderer = (item = {}, index, addLifespanModifier) => {
 	if (item.type !== 'LAST') {
 		return <AddModifierCell item={item} index={index} addLifespanModifier={addLifespanModifier} />;
 	}
+
 	return <Span>{item.text}</Span>;
 };
 
@@ -148,12 +149,7 @@ const AddModifiersList = ({
 	removeLastModifier,
 	addModifiersMode,
 	setAddModifiersMode,
-	data,
-	version,
-	notes,
-	newData,
-	showWhatsNew,
-	dismissWhatsNew
+	data
 }) => {
 	const [ filterText, setFilterText ] = useState('');
 	const [ filteredModifiers, setFilteredModifiers ] = useState(fuzzySearch('', [ ...data ]));
@@ -245,9 +241,9 @@ const AddModifiersList = ({
 			<FlatList
 				keyboardShouldPersistTaps={'handled'}
 				ItemSeparatorComponent={() => <Separator />}
-				data={newData.length && showWhatsNew ? newData : filteredModifiers}
+				data={filteredModifiers}
 				renderItem={({ item, index }) => rowRenderer(item, index, addLifespanModifier)}
-				keyExtractor={(item, index) => item.text + index}
+				keyExtractor={(item, index) => (item || {}).text + index}
 				bounces={false}
 				ListEmptyComponent={<Feedback />}
 			/>
