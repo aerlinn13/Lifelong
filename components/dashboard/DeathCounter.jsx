@@ -16,7 +16,7 @@ const Wrapper = styled.View`
 const Label = styled.Text`
 	color: white;
 	font-size: 40px;
-	font-family: KhulaLight;
+	font-family: KhulaBold;
 	margin-top: 35px;
 	position: absolute;
 `;

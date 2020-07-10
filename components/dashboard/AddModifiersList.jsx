@@ -241,11 +241,6 @@ const AddModifiersList = ({
 						<AntDesign name="questioncircleo" size={24} color="#8f8f8f" />
 					</ClearButton>
 				)}
-				{showWhatsNew && (
-					<ClearButton onPress={() => dismissWhatsNew()} marginLeft={10}>
-						<Foundation name="burst-new" size={32} color="#FF9153" />
-					</ClearButton>
-				)}
 			</Search>
 			<FlatList
 				keyboardShouldPersistTaps={'handled'}
