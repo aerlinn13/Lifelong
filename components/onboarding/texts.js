@@ -1,16 +1,17 @@
 const texts = {
 	intro: [
-		'It is all about time.',
-		'With Lifelong, you are able to create your own avatar, your alter ego, second self.',
-		'Our future in our hands and we are able to win another day of sun.'
+		"With Lifelong, you are able to create your avatar and change it's potential lifespan.",
+		"We believe that key factor of how long a person will live is genetics, and you will be asked about relatives' lifespans.",
+		'Once you finish onboarding, you will be able to influence the lifespan adding food and life events.',
+		'We do not save your data anywhere, so if you remove the app, your data will be lost permanently.'
 	],
 	stepOne: '',
 	stepTwo: '',
 	stepThree: '',
 	stepFour: '',
 	stepFive: [
-		'At Lifelong our goal is to extend human lifespan with healthy lifestyle. We don’t believe in temporary goals like to lose 5 kilograms by the summer. Our goals are daily.',
-		'We also don’t believe in counting calories, because peoples bodies burn calories differently and this daily counting is boring and increases stress.'
+		'Our mission is to help you live longer and healthier life, as well as to embrace and accept the fact that our physical bodies are not immortal.',
+		'There is only one moment between the past and the future and it is called life.'
 	]
 };
 

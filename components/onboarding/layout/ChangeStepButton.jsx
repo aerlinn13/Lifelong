@@ -11,10 +11,10 @@ const Wrapper = styled.View`
 `;
 
 const Button = styled.TouchableOpacity`
-	background-color: #779ecb;
+	background-color: #fda857;
 	color: white;
 	height: 40px;
-	width: 120px;
+	width: ${(props) => (props.wide ? '160px' : '120px')};
 	text-align: center;
 	display: flex;
 	flex-direction: column;
@@ -29,10 +29,10 @@ const ButtonText = styled.Text`
 	text-align: center;
 `;
 
-const ChangeStepButton = ({ label, onPress }) => {
+const ChangeStepButton = ({ label, onPress, wide }) => {
 	return (
 		<Wrapper>
-			<Button onPress={() => onPress()}>
+			<Button onPress={() => onPress()} wide={wide}>
 				<ButtonText>{label}</ButtonText>
 			</Button>
 		</Wrapper>

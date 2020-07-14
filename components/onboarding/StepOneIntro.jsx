@@ -5,11 +5,11 @@ import { OnboardingHeader, Paragraph, ChangeStepButton } from './layout';
 import texts from './texts';
 
 const Wrapper = styled.View`
-	height: ${(props) => `${Dimensions.get('window').height}px`};
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	justify-content: flex-start;
+	align-items: flex-start;
+	height: 100%;
 `;
 
 const Texts = styled.View`
@@ -21,7 +21,7 @@ const Texts = styled.View`
 
 const StepOneIntro = ({ step, setStep }) => (
 	<Wrapper>
-		<OnboardingHeader>Welcome to Lifelong</OnboardingHeader>
+		<OnboardingHeader>It is all about time.</OnboardingHeader>
 		<Texts>{texts['intro'].map((text, i) => <Paragraph key={'paragraph' + i}>{text}</Paragraph>)}</Texts>
 		<ChangeStepButton label="Start" onPress={() => setStep(step + 1)} />
 	</Wrapper>

@@ -10,7 +10,8 @@ const TextInput = styled.TextInput`
 	text-align: center;
 	border-style: solid;
 	border-bottom-width: 1px;
-	border-color: #d8d8d8;
+	border-color: #fda857;
+	color: white;
 `;
 
 const Label = styled.Text`
@@ -18,6 +19,7 @@ const Label = styled.Text`
 	text-align: center;
 	font-size: 18px;
 	padding-top: 15px;
+	color: white;
 `;
 
 const Textfield = ({ label, placeholder, onChange, value, type = 'default' }) => {

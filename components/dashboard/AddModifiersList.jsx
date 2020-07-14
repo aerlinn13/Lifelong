@@ -207,7 +207,7 @@ const AddModifiersList = ({
 								Respawn – restarts onboarding without deleting all lifespan modifiers.
 							</ModalText>
 						</ModalTextContainer>
-						<ConfirmButton label="OK" onPress={() => setModalVisible(false)} color="#8f8f8f" />
+						<ConfirmButton label="OK" onPress={() => setModalVisible(false)} />
 					</ModalBody>
 				</ModalWrapper>
 			</Modal>

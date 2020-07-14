@@ -23,19 +23,21 @@ const Checkbox = styled.View`
 	width: 27px;
 	border: 1px solid black;
 	border-radius: 10px;
-	background-color: ${(props) => (props.selected ? 'black' : 'white')};
+	background-color: ${(props) => (props.selected ? '#fda857' : 'white')};
 `;
 
 const Label = styled.Text`
 	font-family: KhulaRegular;
 	font-size: 18px;
 	padding-top: 10px;
+	color: white;
 `;
 
 const Text = styled.Text`
 	font-family: KhulaRegular;
 	font-size: 18px;
 	padding-left: 20px;
+	color: white;
 `;
 
 const Radio = ({ label, options, onPress }) => {

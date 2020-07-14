@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
+import styled from 'styled-components/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux';
 import { finishOnboarding, updatePersonalInfo, updateRelativeInfo } from '../state/actions';
@@ -10,6 +11,11 @@ import {
 	StepFourFatherDetails,
 	StepFiveFinal
 } from '../components/onboarding';
+
+const Wrapper = styled.View`
+	background-color: black;
+	height: 100%;
+`;
 
 const OnboardingScreen = ({ finishOnboarding, updatePersonalInfo, updateRelativeInfo }) => {
 	const [ step, setStep ] = useState(0);
@@ -30,10 +36,12 @@ const OnboardingScreen = ({ finishOnboarding, updatePersonalInfo, updateRelative
 		}
 	};
 	return (
-		<SafeAreaView>
-			<ScrollView bounces={false} keyboardDismissMode="on-drag" keyboardShouldPersistTaps="always">
-				{renderSteps()}
-			</ScrollView>
+		<SafeAreaView style={{ backgroundColor: 'black' }}>
+			<Wrapper>
+				<ScrollView bounces={false} keyboardDismissMode="on-drag" keyboardShouldPersistTaps="always">
+					{renderSteps()}
+				</ScrollView>
+			</Wrapper>
 		</SafeAreaView>
 	);
 };

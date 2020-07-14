@@ -5,18 +5,18 @@ import { OnboardingHeader, Paragraph, ChangeStepButton } from './layout';
 import texts from './texts';
 
 const Wrapper = styled.View`
-	height: ${(props) => `${Dimensions.get('window').height}px`};
+	height: ${() => `${Dimensions.get('window').height}px`};
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 `;
 
 const StepFiveFinal = ({ finishOnboarding }) => (
 	<Wrapper>
-		<OnboardingHeader>Our goals</OnboardingHeader>
+		<OnboardingHeader>And that's it.</OnboardingHeader>
 		{texts.stepFive.map((text, i) => <Paragraph key={'paragraph' + i}>{text}</Paragraph>)}
-		<ChangeStepButton label="Complete" onPress={finishOnboarding} />
+		<ChangeStepButton label="Open Dashboard" onPress={finishOnboarding} wide />
 	</Wrapper>
 );
 

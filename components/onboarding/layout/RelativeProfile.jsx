@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
-const Container = styled.View`
-	padding: 0px 30px 30px 30px;
-	border-style: solid;
-	border-bottom-width: 1px;
-	border-color: #d8d8d8;
-`;
+const Container = styled.View`padding: 0px 30px 30px 30px;`;
 
 const TextInput = styled.TextInput`
 	font-family: KhulaRegular;
@@ -15,7 +10,8 @@ const TextInput = styled.TextInput`
 	text-align: center;
 	border-style: solid;
 	border-bottom-width: 1px;
-	border-color: #d8d8d8;
+	border-color: #fda857;
+	color: white;
 `;
 
 const Option = styled.TouchableOpacity`
@@ -32,7 +28,7 @@ const Checkbox = styled.View`
 	width: 27px;
 	border: 1px solid black;
 	border-radius: 10px;
-	background-color: ${(props) => (props.selected ? 'black' : 'white')};
+	background-color: ${(props) => (props.selected ? '#fda857' : 'white')};
 `;
 
 const Label = styled.Text`
@@ -40,12 +36,14 @@ const Label = styled.Text`
 	font-size: 18px;
 	padding-top: 10px;
 	text-align: center;
+	color: white;
 `;
 
 const Text = styled.Text`
 	font-family: KhulaRegular;
 	font-size: 18px;
 	padding-left: 20px;
+	color: white;
 `;
 
 const RelativeProfile = ({ label, placeholder, relative, updateRelativeInfo }) => {
