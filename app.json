@@ -29,12 +29,14 @@
 		},
 		"ios": {
 			"supportsTablet": true,
-			"bundleIdentifier": "aerlinn.lifelong"
+			"bundleIdentifier": "aerlinn.lifelong",
+			"googleServicesFile": "./GoogleService-Info.plist"
 		},
 		"android": {
 			"package": "com.aerlinn.lifelong",
 			"versionCode": 1,
-			"softwareKeyboardLayoutMode": "pan"
+			"softwareKeyboardLayoutMode": "pan",
+			"googleServicesFile": "./google-services.json"
 		}
 	}
 }

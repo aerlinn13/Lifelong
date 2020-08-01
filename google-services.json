@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "773268323528",
+    "firebase_url": "https://lifelong13.firebaseio.com",
+    "project_id": "lifelong13",
+    "storage_bucket": "lifelong13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773268323528:android:684a50ce3734bf8b8639fd",
+        "android_client_info": {
+          "package_name": "com.aerlinn.lifelong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773268323528-o7eot82r90rie4cc8415eav26q92ecfg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeHOiFTXQaMZmCr-2QNuQ0entqFo-QPZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773268323528-o7eot82r90rie4cc8415eav26q92ecfg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "773268323528-hpneirvod6c98cecdsekotj4br11ge39.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "aerlinn.lifelong"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
