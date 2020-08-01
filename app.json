@@ -3,7 +3,7 @@
 		"name": "Lifelong",
 		"slug": "Lifelong",
 		"platforms": [ "ios", "android", "web" ],
-		"version": "1.0.10",
+		"version": "1.2",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",
 		"splash": {
@@ -13,6 +13,20 @@
 			"fallbackToCacheTimeout": 0
 		},
 		"assetBundlePatterns": [ "**/*" ],
+		"web": {
+			"config": {
+				"firebase": {
+					"apiKey": "AIzaSyDwRPeRthxLqh0qHDqmTpgDrEXtFkRs3Qw",
+					"authDomain": "lifelong13.firebaseapp.com",
+					"databaseURL": "https://lifelong13.firebaseio.com",
+					"projectId": "lifelong13",
+					"storageBucket": "lifelong13.appspot.com",
+					"messagingSenderId": "773268323528",
+					"appId": "1:773268323528:web:e54a912083a1805e8639fd",
+					"measurementId": "G-7RTZG1642M"
+				}
+			}
+		},
 		"ios": {
 			"supportsTablet": true,
 			"bundleIdentifier": "aerlinn.lifelong"
