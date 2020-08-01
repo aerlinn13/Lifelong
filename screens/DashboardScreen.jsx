@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Animated, Dimensions, Platform, AppState } from 'react-native';
+import { Animated, Dimensions, Platform } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -180,7 +180,11 @@ const DashboardScreen = ({
 							]}
 						>
 							<Lists>
-								<ModifiersFeed userModifiers={lifespanModifiers} data={data} />
+								<ModifiersFeed
+									addModifiersMode={addModifiersMode}
+									userModifiers={lifespanModifiers}
+									data={data}
+								/>
 								<AddModifiersList
 									addModifiersMode={addModifiersMode}
 									setAddModifiersMode={setAddModifiersMode}
@@ -189,28 +193,6 @@ const DashboardScreen = ({
 									data={data}
 								/>
 							</Lists>
-						</Animated.View>
-					) : addModifiersMode ? (
-						<Animated.View
-							style={[
-								{
-									transform: [
-										{
-											translateY: animation.interpolate({
-												inputRange: [ 0, 1 ],
-												outputRange: yRange
-											})
-										}
-									]
-								}
-							]}
-						>
-							<AddModifiersList
-								addModifiersMode={addModifiersMode}
-								setAddModifiersMode={setAddModifiersMode}
-								timeWon={timeWon}
-								timeLost={timeLost}
-							/>
 						</Animated.View>
 					) : (
 						<Animated.View
@@ -227,7 +209,18 @@ const DashboardScreen = ({
 								}
 							]}
 						>
-							<ModifiersFeed userModifiers={lifespanModifiers} />
+							<ModifiersFeed
+								addModifiersMode={addModifiersMode}
+								userModifiers={lifespanModifiers}
+								data={data}
+							/>
+							<AddModifiersList
+								addModifiersMode={addModifiersMode}
+								setAddModifiersMode={setAddModifiersMode}
+								timeWon={timeWon}
+								timeLost={timeLost}
+								data={data}
+							/>
 						</Animated.View>
 					)}
 				</StyledView>

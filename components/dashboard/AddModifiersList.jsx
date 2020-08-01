@@ -152,10 +152,12 @@ const AddModifiersList = ({
 	data
 }) => {
 	const [ filterText, setFilterText ] = useState('');
-	const [ filteredModifiers, setFilteredModifiers ] = useState(fuzzySearch('', [ ...data ]));
+	const [ filteredModifiers, setFilteredModifiers ] = useState(null);
 	const [ modalVisible, setModalVisible ] = useState(false);
 
-	useEffect(() => clearSearch(), [ addModifiersMode ]);
+	useEffect(() => {
+		clearSearch();
+	}, []);
 
 	const clearSearch = () => {
 		setFilterText('');
@@ -193,6 +195,10 @@ const AddModifiersList = ({
 		setFilterText(text);
 		setFilteredModifiers(fuzzySearch(text, data));
 	};
+
+	if ((Platform.OS === 'android' && !addModifiersMode) || !filteredModifiers) {
+		return null;
+	}
 
 	return (
 		<Wrapper>

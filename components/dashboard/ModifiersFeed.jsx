@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Dimensions } from 'react-native';
+import { FlatList, Dimensions, Platform } from 'react-native';
 import styled from 'styled-components/native';
 
 const Wrapper = styled.View`
@@ -88,7 +88,11 @@ const getData = (userModifiers, data) => {
 	return [ ...modifiers, { type: 'LAST', text: `Showing last ${modifiers.length} records` } ];
 };
 
-const ModifiersFeed = ({ userModifiers, data }) => {
+const ModifiersFeed = ({ userModifiers, data, addModifiersMode }) => {
+	if (Platform.OS === 'android' && addModifiersMode) {
+		return null;
+	}
+
 	return (
 		<Wrapper>
 			<FlatList
