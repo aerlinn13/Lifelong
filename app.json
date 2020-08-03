@@ -3,7 +3,7 @@
 		"name": "Lifelong",
 		"slug": "Lifelong",
 		"platforms": [ "ios", "android", "web" ],
-		"version": "1.2",
+		"version": "1.2.1",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",
 		"splash": {
@@ -34,7 +34,7 @@
 		},
 		"android": {
 			"package": "com.aerlinn.lifelong",
-			"versionCode": 2,
+			"versionCode": 3,
 			"softwareKeyboardLayoutMode": "pan",
 			"googleServicesFile": "./google-services.json"
 		}
