@@ -11,11 +11,11 @@ import {
 	removeAllUserModifiers,
 	removeLastModifier,
 	dismissWhatsNew
-} from '../../state/actions';
-import fuzzySearch from '../../helpers/fuzzySearch';
+} from '../state/actions';
+import fuzzySearch from '../../../helpers/fuzzySearch';
 import AddModifierCell from './AddModifierCell';
 import Feedback from './Feedback';
-import { ConfirmButton } from '../onboarding/layout';
+import { ConfirmButton } from '../../onboarding/components/layout/ConfirmButton';
 
 const Wrapper = styled.View`
 	display: flex;

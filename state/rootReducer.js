@@ -1,11 +1,12 @@
 import initialState from './model';
-import * as actionTypes from './actionTypes';
+import * as dashboardActionTypes from '../screens/dashboard/state/actionTypes';
+import * as onboardingActionTypes from '../screens/onboarding/state/actionTypes';
 import geneticCalculator from '../calculators/geneticCalculator';
 import negativeBMICalculator, { bmiRate } from '../calculators/bmiCalculator';
 
 function reducer(state = initialState, action) {
 	switch (action.type) {
-		case actionTypes.FINISH_ONBOARDING:
+		case onboardingActionTypes.FINISH_ONBOARDING:
 			return {
 				...state,
 				onboardingFinished: true,
@@ -13,22 +14,22 @@ function reducer(state = initialState, action) {
 				negativeBMIInfluence: negativeBMICalculator(state),
 				bmi: bmiRate(state)
 			};
-		case actionTypes.RESPAWN_ONBOARDING:
+		case onboardingActionTypes.RESPAWN_ONBOARDING:
 			return {
 				...state,
 				onboardingFinished: false
 			};
-		case actionTypes.UPDATE_PERSONAL_INFO:
+		case onboardingActionTypes.UPDATE_PERSONAL_INFO:
 			return {
 				...state,
 				[action.info]: action.value
 			};
-		case actionTypes.UPDATE_RELATIVE_INFO:
+		case onboardingActionTypes.UPDATE_RELATIVE_INFO:
 			return {
 				...state,
 				[action.relative]: action.info
 			};
-		case actionTypes.UPDATE_WEIGHT:
+		case onboardingActionTypes.UPDATE_WEIGHT:
 			return {
 				...state,
 				weight: action.newWeight,
@@ -39,20 +40,20 @@ function reducer(state = initialState, action) {
 					weight: action.newWeight
 				})
 			};
-		case actionTypes.ADD_LIFESPAN_MODIFIER:
+		case dashboardActionTypes.ADD_LIFESPAN_MODIFIER:
 			return {
 				...state,
 				[action.direction]: state[action.direction] + action.minutes,
 				lifespanModifiers: [ ...state.lifespanModifiers, action.id ]
 			};
-		case actionTypes.REMOVE_ALL_USER_MODIFIERS:
+		case dashboardActionTypes.REMOVE_ALL_USER_MODIFIERS:
 			return {
 				...state,
 				lifespanModifiers: [],
 				timeWon: 0,
 				timeLost: 0
 			};
-		case actionTypes.REMOVE_LAST_MODIFIER:
+		case dashboardActionTypes.REMOVE_LAST_MODIFIER:
 			if (!state.lifespanModifiers.length) {
 				return state;
 			}
@@ -66,24 +67,24 @@ function reducer(state = initialState, action) {
 				lifespanModifiers,
 				[timeToUpdate]: state[timeToUpdate] - lastModifierObj.minutes
 			};
-		case actionTypes.SET_DATA_VERSION:
+		case dashboardActionTypes.SET_DATA_VERSION:
 			return {
 				...state,
 				version: action.version,
 				notes: action.nodes
 			};
-		case actionTypes.DOWNLOAD_DATA:
+		case dashboardActionTypes.DOWNLOAD_DATA:
 			return {
 				...state,
 				data: action.data
 			};
-		case actionTypes.SET_WHATS_NEW:
+		case dashboardActionTypes.SET_WHATS_NEW:
 			return {
 				...state,
 				newData: action.data,
 				showWhatsNew: true
 			};
-		case actionTypes.DISMISS_WHATS_NEW:
+		case dashboardActionTypes.DISMISS_WHATS_NEW:
 			return {
 				...state,
 				newData: [],

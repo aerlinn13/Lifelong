@@ -1,7 +1,7 @@
 import React from 'react';
 import { Linking } from 'react-native';
 import styled from 'styled-components/native';
-import { ConfirmButton } from '../onboarding/layout';
+import { ConfirmButton } from '../../onboarding/components/layout/ConfirmButton';
 
 const Wrapper = styled.View`
 	padding: 15px;

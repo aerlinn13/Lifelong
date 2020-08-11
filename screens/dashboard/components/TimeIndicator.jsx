@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Animated } from 'react-native';
 import styled from 'styled-components/native';
-import timeCalculator from '../../calculators/timeCalculator';
+import timeCalculator from '../../../calculators/timeCalculator';
 
 const Wrapper = styled.View`
 	width: 47%;
