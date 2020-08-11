@@ -14,11 +14,11 @@ import { StatusBar } from 'expo-status-bar';
 
 import { PersistGate } from 'redux-persist/integration/react';
 
-import DashboardScreen from './screens/DashboardScreen';
-import OnboardingScreen from './screens/OnboardingScreen';
+import DashboardScreen from './screens/dashboard/DashboardScreen';
+import OnboardingScreen from './screens/onboarding/OnboardingScreen';
 
 import initialState from './state/model';
-import reducer from './state/reducer';
+import reducer from './state/rootReducer';
 
 const Stack = createStackNavigator();
 

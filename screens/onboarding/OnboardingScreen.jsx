@@ -3,14 +3,14 @@ import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux';
-import { finishOnboarding, updatePersonalInfo, updateRelativeInfo } from '../state/actions';
+import { finishOnboarding, updatePersonalInfo, updateRelativeInfo } from './state/actions';
 import {
 	StepOneIntro,
 	StepTwoUserDetails,
 	StepThreeMotherDetails,
 	StepFourFatherDetails,
 	StepFiveFinal
-} from '../components/onboarding';
+} from './components';
 
 const Wrapper = styled.View`
 	background-color: black;

@@ -12,9 +12,9 @@ import {
 	ModifiersFeed,
 	ReportButton,
 	AddModifiersList
-} from '../components/dashboard';
-import { getModifiersData } from '../helpers/getModifiersData';
-import { setDataVersion, downloadData, setWhatsNew } from '../state/actions';
+} from './components';
+import { getModifiersData } from '../../helpers/getModifiersData';
+import { setDataVersion, downloadData, setWhatsNew } from './state/actions';
 
 const StyledView = styled.View`
 	background-color: #f3f3f3;
