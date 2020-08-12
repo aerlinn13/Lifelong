@@ -70,8 +70,7 @@ const DashboardScreen = ({
 	version,
 	setDataVersion,
 	downloadData,
-	setWhatsNew,
-	newData
+	setWhatsNew
 }) => {
 	const death = moment(dob, 'dd.mm.yyyy').add(lifespan, 'minutes');
 	const [ addModifiersMode, setAddModifiersMode ] = useState(false);
@@ -114,7 +113,6 @@ const DashboardScreen = ({
 
 	const xRange = Platform.OS === 'ios' ? [ 0, -Dimensions.get('window').width ] : [ 0, 0 ];
 	const yRange = [ 0, -170 ];
-	console.log(newData);
 	return (
 		<React.Fragment>
 			<SafeAreaView>
@@ -191,6 +189,7 @@ const DashboardScreen = ({
 									timeWon={timeWon}
 									timeLost={timeLost}
 									data={data}
+									navigation={navigation}
 								/>
 							</Lists>
 						</Animated.View>
@@ -220,6 +219,7 @@ const DashboardScreen = ({
 								timeWon={timeWon}
 								timeLost={timeLost}
 								data={data}
+								navigation={navigation}
 							/>
 						</Animated.View>
 					)}

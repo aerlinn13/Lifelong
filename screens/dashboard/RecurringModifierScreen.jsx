@@ -3,10 +3,9 @@ import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux';
-import { finishOnboarding, updatePersonalInfo, updateRelativeInfo } from '../../state/actions';
 
 const RecurringModifierScreen = () => {
-	return <SafeAreaView style={{ backgroundColor: 'black' }} />;
+	return <SafeAreaView style={{ backgroundColor: 'white' }} />;
 };
 
 const mapStateToProps = (state) => ({

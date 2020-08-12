@@ -29,7 +29,7 @@ function reducer(state = initialState, action) {
 				...state,
 				[action.relative]: action.info
 			};
-		case onboardingActionTypes.UPDATE_WEIGHT:
+		case dashboardActionTypes.UPDATE_WEIGHT:
 			return {
 				...state,
 				weight: action.newWeight,

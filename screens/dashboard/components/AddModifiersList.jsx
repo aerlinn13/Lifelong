@@ -132,14 +132,6 @@ const ModalText = styled.Text`
 	font-family: KhulaLight;
 `;
 
-const rowRenderer = (item = {}, index, addLifespanModifier) => {
-	if (item.type !== 'LAST') {
-		return <AddModifierCell item={item} index={index} addLifespanModifier={addLifespanModifier} />;
-	}
-
-	return <Span>{item.text}</Span>;
-};
-
 const AddModifiersList = ({
 	weight,
 	updateWeight,
@@ -149,7 +141,8 @@ const AddModifiersList = ({
 	removeLastModifier,
 	addModifiersMode,
 	setAddModifiersMode,
-	data
+	data,
+	navigation
 }) => {
 	const [ filterText, setFilterText ] = useState('');
 	const [ filteredModifiers, setFilteredModifiers ] = useState(null);
@@ -194,6 +187,21 @@ const AddModifiersList = ({
 
 		setFilterText(text);
 		setFilteredModifiers(fuzzySearch(text, data));
+	};
+
+	const rowRenderer = (item = {}, index) => {
+		if (item.type !== 'LAST') {
+			return (
+				<AddModifierCell
+					item={item}
+					index={index}
+					addLifespanModifier={addLifespanModifier}
+					navigation={navigation}
+				/>
+			);
+		}
+
+		return <Span>{item.text}</Span>;
 	};
 
 	if ((Platform.OS === 'android' && !addModifiersMode) || !filteredModifiers) {
@@ -248,7 +256,7 @@ const AddModifiersList = ({
 				keyboardShouldPersistTaps={'handled'}
 				ItemSeparatorComponent={() => <Separator />}
 				data={filteredModifiers}
-				renderItem={({ item, index }) => rowRenderer(item, index, addLifespanModifier)}
+				renderItem={({ item, index }) => rowRenderer(item, index)}
 				keyExtractor={(item, index) => (item || {}).text + index}
 				bounces={false}
 				ListEmptyComponent={<Feedback />}

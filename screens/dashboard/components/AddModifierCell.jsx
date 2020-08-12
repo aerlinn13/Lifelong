@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Animated } from 'react-native';
 import styled from 'styled-components/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { AntDesign } from '@expo/vector-icons';
 
 const Cell = styled.View`
 	height: 55px;
@@ -36,7 +37,11 @@ const AddModifierButton = styled(TouchableOpacity)`
 	align-items: center;
 `;
 
-const AddModifierCell = ({ item, index, addLifespanModifier }) => {
+const RecurButton = styled(TouchableOpacity)`
+	margin-right: 15px;
+`;
+
+const AddModifierCell = ({ item, index, addLifespanModifier, navigation }) => {
 	const [ isAdded, setAdded ] = useState(false);
 	const animation = useRef(new Animated.Value(0)).current;
 
@@ -59,6 +64,9 @@ const AddModifierCell = ({ item, index, addLifespanModifier }) => {
 	return (
 		<Cell key={'add' + index + item.text}>
 			<Header>{item.text}</Header>
+			<RecurButton onPress={() => navigation.replace('Recurring')}>
+				<AntDesign name="reload1" size={22} color="black" />
+			</RecurButton>
 			<Animated.View
 				style={[
 					{

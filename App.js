@@ -15,6 +15,8 @@ import { StatusBar } from 'expo-status-bar';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import DashboardScreen from './screens/dashboard/DashboardScreen';
+import RecurringModifierScreen from './screens/dashboard/RecurringModifierScreen';
+
 import OnboardingScreen from './screens/onboarding/OnboardingScreen';
 
 import initialState from './state/model';
@@ -74,6 +76,7 @@ export default function App() {
 							}}
 						>
 							<Stack.Screen name="Dashboard" component={DashboardScreen} />
+							<Stack.Screen name="Recurring" component={RecurringModifierScreen} />
 							<Stack.Screen
 								name="Onboarding"
 								component={OnboardingScreen}
