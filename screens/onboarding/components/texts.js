@@ -1,6 +1,6 @@
 const texts = {
 	intro: [
-		"With Lifelong, you are able to create your avatar and change it's potential lifespan.",
+		'With Lifelong, you are able to create your profile and change your potential lifespan.',
 		"We believe that key factor of how long a person will live is genetics, and you will be asked about relatives' lifespans.",
 		'Once you finish onboarding, you will be able to influence the lifespan adding food and life events.',
 		'We do not save your data anywhere, so if you remove the app, your data will be lost permanently.'

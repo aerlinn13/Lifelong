@@ -79,7 +79,7 @@ const StepTwoUserDetails = ({ step, setStep, updatePersonalInfo }) => {
 
 	return (
 		<React.Fragment>
-			<OnboardingHeader>{`About your avatar (${internalStep + 1} out of 4)`}</OnboardingHeader>
+			<OnboardingHeader>{`About you (${internalStep + 1} out of 4)`}</OnboardingHeader>
 			{renderStep()}
 			<ConfirmButton onPress={handlePress} label="Confirm" disabled={!validation[internalStep].length} />
 		</React.Fragment>
