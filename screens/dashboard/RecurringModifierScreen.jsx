@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { ScrollView } from 'react-native';
-import styled from 'styled-components/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux';
 
